@@ -1,2 +1,2 @@
 # Testbox
-Repository of different test code and experimentation
+Repository of different test code and experiments
