@@ -7,7 +7,7 @@
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.1.1";
+const char *windowTitle = "Astroshark Labs Testbox v0.1.2";
 
 void close();
 
@@ -24,30 +24,27 @@ void initialize(int *debug) {
 
 	SDL_Rect splash_screenRect;
 	createSprite(&renderer, &splash_screenRect.w, &splash_screenRect.h, &splash_screenTexture, "resources/gfx/splash_screen.png");
-	splash_screenRect.w *= 1;
-	splash_screenRect.h *= 1;
-	splash_screenRect.x = (WINDOW_WIDTH / 2) - (splash_screenRect.w / 2);
-	splash_screenRect.y = (WINDOW_HEIGHT / 2) - (splash_screenRect.h / 2) - 25;
+	splash_screenRect.x = 0;
+	splash_screenRect.y = 0;
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, splash_screenTexture, NULL, &splash_screenRect);
 	SDL_RenderPresent(renderer);
 
 	SDL_Delay(3000);
-
-	int backgroundColor = 255;
-	while (backgroundColor > 0) {
-		SDL_SetRenderDrawColor(renderer, backgroundColor, backgroundColor, backgroundColor, 255);
+	SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
+	int splash_screenAlpha = 255;
+	while (splash_screenAlpha > 0) {
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, splash_screenTexture, NULL, &splash_screenRect);
-		SDL_SetTextureAlphaMod(splash_screenTexture, backgroundColor);
+		SDL_SetTextureAlphaMod(splash_screenTexture, splash_screenAlpha);
 		SDL_RenderPresent(renderer);
-		backgroundColor -= 5;
+		splash_screenAlpha -= 5;
 	}
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderClear(renderer);
+	SDL_RenderPresent(renderer);
 
 	SDL_Delay(2000);
-	SDL_DestroyRenderer(renderer);
 	close();
 
 	debug = 0;
@@ -55,7 +52,7 @@ void initialize(int *debug) {
 
 void close() {
 	SDL_DestroyTexture(splash_screenTexture);
-
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gameWindow);
 	IMG_Quit();
 	SDL_Quit();
