@@ -8,7 +8,7 @@
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.1.3";
+const char *windowTitle = "Astroshark Labs Testbox v0.1.4";
 
 void close();
 
@@ -57,6 +57,7 @@ void initialize(int *debug) {
 
 void close() {
 	SDL_DestroyTexture(splash_screenTexture);
+	SDL_DestroyTexture(astroshark_titleTexture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gameWindow);
 	IMG_Quit();

@@ -13,6 +13,5 @@ typedef struct sprite {
 	int totalFrames;
 	SDL_Rect dstrect;
 	SDL_Rect frame[10];
-	SDL_Texture *texture;
 } sprite;
 #endif
