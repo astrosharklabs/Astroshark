@@ -4,10 +4,11 @@
 #include "SDL_image.h"
 #include "backend.h"
 #include "textures.h"
+#include "mainmenu.h"
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.1.2";
+const char *windowTitle = "Astroshark Labs Testbox v0.1.3";
 
 void close();
 
@@ -21,9 +22,10 @@ void initialize(int *debug) {
 	IMG_Init(IMG_INIT_PNG);
 	Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 	renderer = SDL_CreateRenderer(gameWindow, -1, render_flags);
-
+	
 	SDL_Rect splash_screenRect;
-	createSprite(&renderer, &splash_screenRect.w, &splash_screenRect.h, &splash_screenTexture, "resources/gfx/splash_screen.png");
+
+	createSprite(renderer, &splash_screenRect.w, &splash_screenRect.h, &splash_screenTexture, "resources/gfx/splash_screen.png");
 	splash_screenRect.x = 0;
 	splash_screenRect.y = 0;
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -43,6 +45,8 @@ void initialize(int *debug) {
 	}
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
+
+	mainmenu(renderer);
 
 	SDL_Delay(2000);
 	close();

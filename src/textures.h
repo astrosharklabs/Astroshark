@@ -6,4 +6,5 @@
 
 extern SDL_Texture *splash_screenTexture;
 
+extern SDL_Texture *astroshark_titleTexture;
 #endif
