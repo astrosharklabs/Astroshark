@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include "SDL.h"
 #include "SDL_image.h"
-#include "backend.h"
 #include "textures.h"
 #include "mainmenu.h"
+#include "sprite.h"
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.1.4";
+const char *windowTitle = "Astroshark Labs Testbox v0.2.0";
 
 void close();
 
