@@ -35,6 +35,7 @@ void initialize(int *debug) {
 
 	SDL_Delay(3000);
 	SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp
 	int splash_screenAlpha = 255;
 	while (splash_screenAlpha > 0) {
 		SDL_RenderClear(renderer);
