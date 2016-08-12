@@ -11,6 +11,7 @@ typedef struct sprite {
 	int rotate;
 	int defaultOrientation;
 	int totalFrames;
+	int alpha;
 	SDL_Rect dstrect;
 	SDL_Rect frame[10];
 } sprite;
