@@ -37,8 +37,8 @@ typedef struct animation {
 } animation;
 
 typedef struct collision {
-	SDL_Rect hitbox;
-	SDL_Rect hurtbox;
+	SDL_Rect hitbox; //Basic area which an object can come in contact OR The area that will hit the enemy
+	SDL_Rect hurtbox; //Area that will damage yourself if you get hit in
 } collision;
 
 /*Takes a texture and queries it onto a rectangle, thereby creating a sprite*/

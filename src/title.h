@@ -4,15 +4,15 @@
 #include "textures.h"
 #include "sprite.h"
 
-#ifndef splashscreen_h
-#define splashscreen_h
+#ifndef title_h
+#define title_h
 
-class splashScreen {
+class title {
 public:
-	splashScreen();
+	title();
 	void create(SDL_Renderer *renderer); //Does all backend to create the splashScreen
 	void display(SDL_Renderer *renderer); //Displays the image at the given location
-	void fadeOut(SDL_Renderer *renderer); //Fades the image out
+	void fadeIn(SDL_Renderer *renderer, int rate); //Fades the image out
 private:
 	defaultProp prop;
 };
