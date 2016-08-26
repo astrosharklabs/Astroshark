@@ -5,6 +5,7 @@
 #include "textures.h"
 #include "mainmenu.h"
 #include "sprite.h"
+#include "splashscreen.h"
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
@@ -25,7 +26,7 @@ void initialize(int *debug) {
 	
 	SDL_Rect splash_screenRect;
 
-	createSprite(renderer, &splash_screenRect.w, &splash_screenRect.h, &splash_screenTexture, "resources/gfx/splash_screen.png");
+	loadPNGImageToTexture(renderer, &splash_screenRect.w, &splash_screenRect.h, &splash_screenTexture, "resources/gfx/splash_screen.png");
 	splash_screenRect.x = 0;
 	splash_screenRect.y = 0;
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);

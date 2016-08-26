@@ -5,7 +5,7 @@
 
 int mainmenu(SDL_Renderer *renderer) {
 	sprite astroshark_title;
-	createSprite(renderer, &astroshark_title.dstrect.w, &astroshark_title.dstrect.h, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
+	loadPNGImageToTexture(renderer, &astroshark_title.dstrect.w, &astroshark_title.dstrect.h, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
 	astroshark_title.dstrect.x = 640 - astroshark_title.dstrect.w / 2;
 	astroshark_title.dstrect.y = 150;
 	astroshark_title.alpha = 0;

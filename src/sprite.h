@@ -5,6 +5,7 @@
 
 #include "SDL.h"
 
+/*TEMPORARY*/
 typedef struct sprite {
 	int deltaX;
 	int deltaY;
@@ -17,13 +18,29 @@ typedef struct sprite {
 	SDL_Rect frame[10];
 } sprite;
 
-typedef struct RGBA {
-	int r;
-	int g;
-	int b;
-	int a;
-} RGBA;
+typedef struct defaultProp {
+	int alpha;
+	int defaultOrientation;
+	SDL_Rect dstrect;
+} defaultProp;
+
+typedef struct basicMove {
+	int deltaX;
+	int deltaY;
+	int speed;
+	int rotate;
+} basicMove;
+
+typedef struct animation {
+	int totalFrames; //frame number?
+	SDL_Rect frame[10];
+} animation;
+
+typedef struct collision {
+	SDL_Rect hitbox;
+	SDL_Rect hurtbox;
+} collision;
 
 /*Takes a texture and queries it onto a rectangle, thereby creating a sprite*/
-void createSprite(struct SDL_Renderer *, int *, int *, struct SDL_Texture **, const char *);
+void loadPNGImageToTexture(SDL_Renderer *, int *, int *, SDL_Texture **, const char *);
 #endif
