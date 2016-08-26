@@ -4,7 +4,7 @@
 #include "SDL_image.h"
 #include "textures.h"
 #include "mainmenu.h"
-#include "sprite.h"
+//#include "sprite.h"
 #include "splashscreen.h"
 
 #define WINDOW_WIDTH 1280
@@ -24,7 +24,14 @@ void initialize(int *debug) {
 	Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 	renderer = SDL_CreateRenderer(gameWindow, -1, render_flags);
 	
-	SDL_Rect splash_screenRect;
+	splashScreen splashScreen;
+	splashScreen.create(renderer);
+	splashScreen.display(renderer);
+
+
+
+
+/*	SDL_Rect splash_screenRect;
 
 	loadPNGImageToTexture(renderer, &splash_screenRect.w, &splash_screenRect.h, &splash_screenTexture, "resources/gfx/splash_screen.png");
 	splash_screenRect.x = 0;
@@ -32,19 +39,19 @@ void initialize(int *debug) {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, splash_screenTexture, NULL, &splash_screenRect);
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(renderer);*/
 
 	SDL_Delay(3000);
 	SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp
 	int splash_screenAlpha = 255;
-	while (splash_screenAlpha > 0) {
+	/*while (splash_screenAlpha > 0) {
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, splash_screenTexture, NULL, &splash_screenRect);
 		SDL_SetTextureAlphaMod(splash_screenTexture, splash_screenAlpha);
 		SDL_RenderPresent(renderer);
 		splash_screenAlpha -= 5;
-	}
+	}*/
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 
