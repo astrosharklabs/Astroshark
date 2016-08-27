@@ -14,9 +14,7 @@ title::title() {
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 void title::display(SDL_Renderer *renderer) {
-	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, prop.texture, NULL, &prop.dstrect);
-	SDL_RenderPresent(renderer);
 }
 void title::fadeIn(SDL_Renderer *renderer, int rate) {
 	while (prop.alpha < 255) {
@@ -27,4 +25,12 @@ void title::fadeIn(SDL_Renderer *renderer, int rate) {
 	}
 	prop.alpha = 255;
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
+}
+
+void title::alphaInc(int rate) {
+	alphaIncrease(prop.texture, &prop.alpha, rate);
+}
+
+void title::alphaDec(int rate) {
+	alphaDecrease(prop.texture, &prop.alpha, rate);
 }

@@ -9,10 +9,12 @@
 
 class button {
 public:
-	button();
-	void create(SDL_Renderer *renderer); //Does all backend to create the splashScreen
+	button(int, int, int, int);
 	void display(SDL_Renderer *renderer); //Displays the image at the given location
 	void fadeIn(SDL_Renderer *renderer, int rate); //Fades the image out
+	void setXY(int, int);
+	void alphaInc(int);
+	void alphaDec(int);
 private:
 	defaultProp prop;
 };

@@ -8,7 +8,7 @@
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.2.3";
+const char *windowTitle = "Astroshark Labs Testbox v0.2.4";
 
 void loadTextures();
 void close();
@@ -48,7 +48,7 @@ void initialize(int *debug) {
 
 void loadTextures() {
 	loadTexturefromIMG(renderer, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
-	loadTexturefromIMG(renderer, &buttons_texture, "resoureces/gfx/buttons/buttons.png");
+	loadTexturefromIMG(renderer, &buttons_texture, "resources/gfx/buttons/buttons.png");
 }
 
 void close() {

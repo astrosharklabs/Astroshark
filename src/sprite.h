@@ -22,6 +22,7 @@ typedef struct defaultProp {
 	int alpha;
 	int defaultOrientation;
 	SDL_Rect dstrect;
+	SDL_Rect srcrect;
 	SDL_Texture *texture;
 } defaultProp;
 
