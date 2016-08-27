@@ -1,4 +1,4 @@
-/*Astroshark Labs Testbox v0.2.5*/
+/*Astroshark Labs Testbox*/
 /*Created by MrSkee*/
 /*Astroshark Labs Testbox code is copyrighted by Astroshark Labs
 *and cannot be used or redistributed without explicit permission from Astroshark Labs*/

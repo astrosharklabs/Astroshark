@@ -25,6 +25,10 @@ int mainmenu(SDL_Renderer *renderer) {
 		alphaCounter += 15;
 	}
 
+	while (close_requested == false) {
+		checkInput();
+	}
+
 	SDL_RenderClear(renderer);
 	title.display(renderer);
 	startgame_button.display(renderer, 0);
