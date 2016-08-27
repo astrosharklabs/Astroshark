@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "SDL.h"
 #include "SDL_image.h"
 
@@ -16,4 +17,14 @@ void alphaIncrease(SDL_Texture *texture, int *alpha, int rate) {
 void alphaDecrease(SDL_Texture *texture, int *alpha, int rate) {
 	*alpha -= rate;
 	SDL_SetTextureAlphaMod(texture, *alpha);
+}
+
+void setRect(int x, int y, int w, int h, int *rectX, int *rectY, int *rectW, int *rectH) {
+	*rectX = x;
+		
+	*rectY = y;
+	
+	*rectW = w;
+	
+	*rectH = h;
 }

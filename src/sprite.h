@@ -34,8 +34,7 @@ typedef struct basicMove {
 } basicMove;
 
 typedef struct animation {
-	int totalFrames; //frame number?
-	SDL_Rect frame[10];
+	SDL_Rect srcrect;
 } animation;
 
 typedef struct collision {
@@ -49,4 +48,6 @@ void loadPNGImageToTexture(SDL_Renderer *, int *, int *, SDL_Texture **, const c
 void alphaIncrease(SDL_Texture *, int *, int);
 
 void alphaDecrease(SDL_Texture *, int *, int);
+
+void setRect(int, int, int, int, int *, int *, int *, int *);
 #endif
