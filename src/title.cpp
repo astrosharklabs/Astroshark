@@ -10,22 +10,25 @@ title::title() {
 	prop.alpha = 0;
 }
 void title::create(SDL_Renderer *renderer) {
-	loadPNGImageToTexture(renderer, &prop.dstrect.w, &prop.dstrect.h, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
+	//loadPNGImageToTexture(renderer, &prop.dstrect.w, &prop.dstrect.h, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
+	prop.texture = astroshark_titleTexture;
+	prop.dstrect.w = 740;
+	prop.dstrect.h = 95;
 	prop.dstrect.x = 640 - prop.dstrect.w / 2;
 	prop.dstrect.y = 150;
 }
 void title::display(SDL_Renderer *renderer) {
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, astroshark_titleTexture, NULL, &prop.dstrect);
+	SDL_RenderCopy(renderer, prop.texture, NULL, &prop.dstrect);
 	SDL_RenderPresent(renderer);
 }
 void title::fadeIn(SDL_Renderer *renderer, int rate) {
 	while (prop.alpha < 255) {
 		SDL_RenderClear(renderer);
-		SDL_SetTextureAlphaMod(astroshark_titleTexture, prop.alpha);
-		SDL_RenderCopy(renderer, astroshark_titleTexture, NULL, &prop.dstrect);
+		SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
+		SDL_RenderCopy(renderer, prop.texture, NULL, &prop.dstrect);
 		SDL_RenderPresent(renderer);
 		prop.alpha += rate;
 	}
-	SDL_SetTextureAlphaMod(astroshark_titleTexture, 255);
+	SDL_SetTextureAlphaMod(prop.texture, 255);
 }

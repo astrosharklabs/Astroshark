@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include "SDL.h"
-#include "textures.h"
-#include "sprite.h"
 #include "title.h"
 
 int mainmenu(SDL_Renderer *renderer) {

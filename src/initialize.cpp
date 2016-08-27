@@ -8,8 +8,9 @@
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.2.2";
+const char *windowTitle = "Astroshark Labs Testbox v0.2.3";
 
+void loadTextures();
 void close();
 
 SDL_Window *gameWindow;
@@ -27,8 +28,10 @@ void initialize(int *debug) {
 	splashScreen.create(renderer);
 	splashScreen.display(renderer);
 
-	SDL_Delay(3000);
-	SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
+	loadTextures();
+
+	//SDL_Delay(3000);
+	//SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp
 
 	splashScreen.fadeOut(renderer);
@@ -44,9 +47,15 @@ void initialize(int *debug) {
 	debug = 0;
 }
 
+void loadTextures() {
+	loadTexturefromIMG(renderer, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
+	loadTexturefromIMG(renderer, &buttons_texture, "resoureces/gfx/buttons/buttons.png");
+}
+
 void close() {
 	SDL_DestroyTexture(splash_screenTexture);
 	SDL_DestroyTexture(astroshark_titleTexture);
+	SDL_DestroyTexture(buttons_texture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gameWindow);
 	IMG_Quit();
