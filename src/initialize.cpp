@@ -24,8 +24,7 @@ void initialize(int *debug) {
 	Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 	renderer = SDL_CreateRenderer(gameWindow, -1, render_flags);
 	
-	splashScreen splashScreen;
-	splashScreen.create(renderer);
+	splashScreen splashScreen(renderer);
 	splashScreen.display(renderer);
 
 	loadTextures();

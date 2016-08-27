@@ -4,7 +4,6 @@
 
 int mainmenu(SDL_Renderer *renderer) {
 	title title;
-	title.create(renderer);
 	title.fadeIn(renderer, 15);
 	title.display(renderer);
 	return 0;

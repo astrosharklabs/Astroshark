@@ -9,8 +9,7 @@
 
 class splashScreen {
 public:
-	splashScreen();
-	void create(SDL_Renderer *renderer); //Does all backend to create the splashScreen
+	splashScreen(SDL_Renderer *renderer);
 	void display(SDL_Renderer *renderer); //Displays the image at the given location
 	void fadeOut(SDL_Renderer *renderer); //Fades the image out
 private:

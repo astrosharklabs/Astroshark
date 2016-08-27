@@ -7,3 +7,13 @@ void loadPNGImageToTexture(SDL_Renderer *renderer, int *w, int *h, SDL_Texture *
 	SDL_FreeSurface(tempSurface);
 	SDL_QueryTexture(*spriteTexture, NULL, NULL, w, h);
 }
+
+void alphaIncrease(SDL_Texture *texture, int *alpha, int rate) {
+	*alpha += rate;
+	SDL_SetTextureAlphaMod(texture, *alpha);
+}
+
+void alphaDecrease(SDL_Texture *texture, int *alpha, int rate) {
+	*alpha -= rate;
+	SDL_SetTextureAlphaMod(texture, *alpha);
+}

@@ -5,17 +5,13 @@
 #include "title.h"
 
 title::title() {
-	prop.dstrect.x = 0;
-	prop.dstrect.y = 0;
-	prop.alpha = 0;
-}
-void title::create(SDL_Renderer *renderer) {
-	//loadPNGImageToTexture(renderer, &prop.dstrect.w, &prop.dstrect.h, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
 	prop.texture = astroshark_titleTexture;
 	prop.dstrect.w = 740;
 	prop.dstrect.h = 95;
 	prop.dstrect.x = 640 - prop.dstrect.w / 2;
 	prop.dstrect.y = 150;
+	prop.alpha = 0;
+	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 void title::display(SDL_Renderer *renderer) {
 	SDL_RenderClear(renderer);
@@ -25,10 +21,10 @@ void title::display(SDL_Renderer *renderer) {
 void title::fadeIn(SDL_Renderer *renderer, int rate) {
 	while (prop.alpha < 255) {
 		SDL_RenderClear(renderer);
-		SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 		SDL_RenderCopy(renderer, prop.texture, NULL, &prop.dstrect);
 		SDL_RenderPresent(renderer);
-		prop.alpha += rate;
+		alphaIncrease(prop.texture, &prop.alpha, 15);
 	}
-	SDL_SetTextureAlphaMod(prop.texture, 255);
+	prop.alpha = 255;
+	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
