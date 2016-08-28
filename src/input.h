@@ -37,6 +37,12 @@ namespace input {
 	extern bool down_key;
 	extern bool left_key;
 	extern bool right_key;
+
+	extern bool mouseMotion;
+	extern bool left_mouse;
+
+	extern int mouseX;
+	extern int mouseY;
 }
 
 extern bool close_requested;

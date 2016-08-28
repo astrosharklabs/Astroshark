@@ -17,8 +17,10 @@ public:
 	void alphaDec(int);
 	void defFrame(int, int, int, int, int);
 	void setFrame(int);
+	bool mouseOver();
 private:
 	defaultProp prop;
 	animation frame[2];
+	collision collision;
 };
 #endif

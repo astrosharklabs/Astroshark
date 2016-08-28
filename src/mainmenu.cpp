@@ -43,7 +43,7 @@ int mainmenu(SDL_Renderer *renderer) {
 		alphaCounter += 15;
 	}
 
-	int current_selection = START_GAME;
+	int current_selection = -1;
 
 	while (close_requested == false) {
 		checkInput();
@@ -52,10 +52,19 @@ int mainmenu(SDL_Renderer *renderer) {
 		if (input::up_key == true)
 			current_selection--;
 
-		if (current_selection < 0)
-			current_selection = 3;
-		if (current_selection > 3)
-			current_selection = 0;
+		if (startgame_button.mouseOver() == true)
+			current_selection = START_GAME;
+		if (options_button.mouseOver() == true)
+			current_selection = OPTIONS;
+		if (credits_button.mouseOver() == true)
+			current_selection = CREDITS;
+		if (quit_button.mouseOver() == true)
+			current_selection = QUIT;
+
+		if (current_selection < START_GAME)
+			current_selection = QUIT;
+		if (current_selection > QUIT)
+			current_selection = START_GAME;
 		
 		switch(current_selection) {
 		case START_GAME:
@@ -63,31 +72,34 @@ int mainmenu(SDL_Renderer *renderer) {
 			options_button.setFrame(0);
 			credits_button.setFrame(0);
 			quit_button.setFrame(0);
-			if (input::enter_key == true);
+			if (input::enter_key == true || input::left_mouse == true);
 			break;
 		case OPTIONS:
 			startgame_button.setFrame(0);
 			options_button.setFrame(1);
 			credits_button.setFrame(0);
 			quit_button.setFrame(0);
-			if (input::enter_key == true);
+			if (input::enter_key == true || input::left_mouse == true);
 			break;
 		case CREDITS:
 			startgame_button.setFrame(0);
 			options_button.setFrame(0);
 			credits_button.setFrame(1);
 			quit_button.setFrame(0);
-			if (input::enter_key == true);
+			if (input::enter_key == true || input::left_mouse == true);
 			break;
 		case QUIT:
 			startgame_button.setFrame(0);
 			options_button.setFrame(0);
 			credits_button.setFrame(0);
 			quit_button.setFrame(1);
-			if (input::enter_key == true)
+			if (input::enter_key == true || input::left_mouse == true)
 				close_requested = true;
 			break;
 		}
+
+		if (input::left_mouse == true)
+			printf("Clicked\n");
 
 		SDL_RenderClear(renderer);
 		title.display(renderer);

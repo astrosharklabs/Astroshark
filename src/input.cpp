@@ -1,5 +1,6 @@
 #include "input.h"
 #include "SDL.h"
+
 bool input::a_key = false;
 bool input::b_key = false;
 bool input::c_key = false;
@@ -35,6 +36,12 @@ bool input::up_key = false;
 bool input::down_key = false;
 bool input::left_key = false;
 bool input::right_key = false;
+
+bool input::mouseMotion = false;
+bool input::left_mouse = false;
+
+int input::mouseX = 0;
+int input::mouseY = 0;
 
 bool close_requested = false;
 
@@ -77,6 +84,9 @@ void checkInput() {
 			case SDL_SCANCODE_RETURN:
 				input::enter_key = true;
 				break;
+			case SDL_MOUSEBUTTONDOWN:
+				input::left_mouse = true;
+				break;
 			}
 			break;
 		case SDL_KEYUP:
@@ -111,7 +121,9 @@ void checkInput() {
 			case SDL_SCANCODE_RETURN:
 				input::enter_key = false;
 				break;
-
+			case SDL_MOUSEBUTTONUP:
+				input::left_mouse = false;
+				break;
 			}
 			break;
 		}

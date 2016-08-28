@@ -3,6 +3,7 @@
 #include "textures.h"
 #include "sprite.h"
 #include "buttons.h"
+#include "input.h"
 
 button::button(int dstX, int dstY, int dstW, int dstH) {
 	prop.texture = buttons_texture;
@@ -11,6 +12,11 @@ button::button(int dstX, int dstY, int dstW, int dstH) {
 	prop.dstrect.y = dstY;
 	prop.dstrect.w = dstW;
 	prop.dstrect.h = dstH;
+
+	collision.hitbox.x = dstX;
+	collision.hitbox.y = dstY;
+	collision.hitbox.w = dstW;
+	collision.hitbox.h = dstH;
 
 	prop.frame = 0;
 
@@ -51,4 +57,19 @@ void button::defFrame(int srcX, int srcY, int srcW, int srcH, int frameN) {
 
 void button::setFrame(int frameN) {
 	prop.frame = frameN;
+}
+
+bool button::mouseOver() {
+	SDL_GetMouseState(&input::mouseX, &input::mouseY);
+
+	if (input::mouseX < collision.hitbox.x)
+		return false;
+	if (input::mouseX > collision.hitbox.x + collision.hitbox.w)
+		return false;
+	if (input::mouseY < collision.hitbox.y)
+		return false;
+	if (input::mouseY > collision.hitbox.y + collision.hitbox.h)
+		return false;
+
+	return true;
 }
