@@ -6,7 +6,6 @@
 
 #ifndef buttons_h
 #define buttons_h
-enum selection {START_GAME, QUIT};
 
 class button {
 public:
