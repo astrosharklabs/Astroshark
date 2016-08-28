@@ -40,7 +40,7 @@ void button::fadeIn(SDL_Renderer *renderer, int rate) {
 }
 
 void button::setXY(int dstX, int dstY) {
-	setRect(dstX, dstY, NULL, NULL, &prop.dstrect.x, &prop.dstrect.y, NULL, NULL);
+	setRect(dstX, dstY, NULL, NULL, &prop.dstrect);
 }
 
 void button::alphaInc(int rate) {
@@ -52,7 +52,7 @@ void button::alphaDec(int rate) {
 }
 
 void button::defFrame(int srcX, int srcY, int srcW, int srcH, int frameN) {
-	setRect(srcX, srcY, srcW, srcH, &frame[frameN].srcrect.x, &frame[frameN].srcrect.y, &frame[frameN].srcrect.w, &frame[frameN].srcrect.h);
+	setRect(srcX, srcY, srcW, srcH, &frame[frameN].srcrect);
 }
 
 void button::setFrame(int frameN) {
@@ -60,10 +60,7 @@ void button::setFrame(int frameN) {
 }
 
 void button::setCollision(int x, int y, int w, int h) {
-	collision.hitbox.x = x;
-	collision.hitbox.y = y;
-	collision.hitbox.w = w;
-	collision.hitbox.h = h;
+	setRect(x, y, w, h, &collision.hitbox);
 }
 
 bool button::mouseOver() {

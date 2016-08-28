@@ -103,9 +103,6 @@ int mainmenu(SDL_Renderer *renderer) {
 			break;
 		}
 
-		if (input::left_mouse == true)
-			printf("Clicked\n");
-
 		SDL_RenderClear(renderer);
 		title.display(renderer);
 		startgame_button.display(renderer);

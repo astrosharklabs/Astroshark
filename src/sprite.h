@@ -50,5 +50,5 @@ void alphaIncrease(SDL_Texture *, int *, int);
 
 void alphaDecrease(SDL_Texture *, int *, int);
 
-void setRect(int, int, int, int, int *, int *, int *, int *);
+void setRect(int, int, int, int, SDL_Rect *);
 #endif
