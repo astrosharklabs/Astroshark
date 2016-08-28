@@ -59,6 +59,13 @@ void button::setFrame(int frameN) {
 	prop.frame = frameN;
 }
 
+void button::setCollision(int x, int y, int w, int h) {
+	collision.hitbox.x = x;
+	collision.hitbox.y = y;
+	collision.hitbox.w = w;
+	collision.hitbox.h = h;
+}
+
 bool button::mouseOver() {
 	SDL_GetMouseState(&input::mouseX, &input::mouseY);
 

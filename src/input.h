@@ -40,6 +40,8 @@ namespace input {
 
 	extern bool mouseMotion;
 	extern bool left_mouse;
+	extern bool middle_mouse;
+	extern bool right_mouse;
 
 	extern int mouseX;
 	extern int mouseY;

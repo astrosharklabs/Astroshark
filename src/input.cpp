@@ -39,6 +39,8 @@ bool input::right_key = false;
 
 bool input::mouseMotion = false;
 bool input::left_mouse = false;
+bool input::middle_mouse = false;
+bool input::right_mouse = false;
 
 int input::mouseX = 0;
 int input::mouseY = 0;
@@ -84,9 +86,6 @@ void checkInput() {
 			case SDL_SCANCODE_RETURN:
 				input::enter_key = true;
 				break;
-			case SDL_MOUSEBUTTONDOWN:
-				input::left_mouse = true;
-				break;
 			}
 			break;
 		case SDL_KEYUP:
@@ -121,11 +120,33 @@ void checkInput() {
 			case SDL_SCANCODE_RETURN:
 				input::enter_key = false;
 				break;
-			case SDL_MOUSEBUTTONUP:
-				input::left_mouse = false;
+			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event.button.button) {
+			case SDL_BUTTON_LEFT:
+				input::left_mouse = true;
+				break;
+			case SDL_BUTTON_MIDDLE:
+				input::middle_mouse = true;
+				break;
+			case SDL_BUTTON_RIGHT:
+				input::right_mouse = true;
 				break;
 			}
 			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button) {
+			case SDL_BUTTON_LEFT:
+				input::left_mouse = false;
+				break;
+			case SDL_BUTTON_MIDDLE:
+				input::middle_mouse = false;
+				break;
+			case SDL_BUTTON_RIGHT:
+				input::right_mouse = false;
+				break;
+			}
 		}
 	}
 }

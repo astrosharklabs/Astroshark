@@ -17,6 +17,7 @@ public:
 	void alphaDec(int);
 	void defFrame(int, int, int, int, int);
 	void setFrame(int);
+	void setCollision(int, int, int, int);
 	bool mouseOver();
 private:
 	defaultProp prop;
