@@ -12,18 +12,20 @@ button::button(int dstX, int dstY, int dstW, int dstH) {
 	prop.dstrect.w = dstW;
 	prop.dstrect.h = dstH;
 
+	prop.frame = 0;
+
 	prop.alpha = 0;
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 
-void button::display(SDL_Renderer *renderer, int frameN) {
-	SDL_RenderCopy(renderer, prop.texture, &frame[frameN].srcrect, &prop.dstrect);
+void button::display(SDL_Renderer *renderer) {
+	SDL_RenderCopy(renderer, prop.texture, &frame[prop.frame].srcrect, &prop.dstrect);
 }
 
-void button::fadeIn(SDL_Renderer *renderer, int rate, int frameN) {
+void button::fadeIn(SDL_Renderer *renderer, int rate) {
 	while (prop.alpha < 255) {
 		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, prop.texture, &frame[frameN].srcrect, &prop.dstrect);
+		SDL_RenderCopy(renderer, prop.texture, &frame[prop.frame].srcrect, &prop.dstrect);
 		SDL_RenderPresent(renderer);
 		alphaIncrease(prop.texture, &prop.alpha, 15);
 	}
@@ -43,6 +45,10 @@ void button::alphaDec(int rate) {
 	alphaDecrease(prop.texture, &prop.alpha, rate);
 }
 
-void button::setFrame(int srcX, int srcY, int srcW, int srcH, int frameN) {
+void button::defFrame(int srcX, int srcY, int srcW, int srcH, int frameN) {
 	setRect(srcX, srcY, srcW, srcH, &frame[frameN].srcrect.x, &frame[frameN].srcrect.y, &frame[frameN].srcrect.w, &frame[frameN].srcrect.h);
+}
+
+void button::setFrame(int frameN) {
+	prop.frame = frameN;
 }

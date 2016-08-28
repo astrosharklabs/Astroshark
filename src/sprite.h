@@ -21,6 +21,7 @@ typedef struct sprite {
 typedef struct defaultProp {
 	int alpha;
 	int defaultOrientation;
+	int frame;
 	SDL_Rect dstrect;
 	SDL_Rect srcrect;
 	SDL_Texture *texture;

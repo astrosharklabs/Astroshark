@@ -6,18 +6,20 @@
 int mainmenu(SDL_Renderer *renderer) {
 	title title;
 	button startgame_button(290, 300, 700, 50);
-	startgame_button.setFrame(0, 0, 700, 50, 0);
-	startgame_button.setFrame(700, 0, 700, 50, 1);
+	startgame_button.defFrame(0, 0, 700, 50, 0);
+	startgame_button.defFrame(700, 0, 700, 50, 1);
+	startgame_button.setFrame(1);
 	button quit_button(290, 350, 700, 50);
-	quit_button.setFrame(0, 50, 700, 50, 0);
-	quit_button.setFrame(700, 50, 700, 50, 1);
+	quit_button.defFrame(0, 50, 700, 50, 0);
+	quit_button.defFrame(700, 50, 700, 50, 1);
+	quit_button.setFrame(1);
 
 	int alphaCounter = 0;
 	while (alphaCounter < 255) {
 		SDL_RenderClear(renderer);
 		title.display(renderer);
-		startgame_button.display(renderer, 0);
-		quit_button.display(renderer, 1);
+		startgame_button.display(renderer);
+		quit_button.display(renderer);
 		SDL_RenderPresent(renderer);
 		title.alphaInc(15);
 		startgame_button.alphaInc(15);
@@ -25,14 +27,45 @@ int mainmenu(SDL_Renderer *renderer) {
 		alphaCounter += 15;
 	}
 
+	int current_selection = START_GAME;
+
 	while (close_requested == false) {
 		checkInput();
+		if (input::down_key == true)
+			current_selection++;
+		if (input::up_key == true)
+			current_selection--;
+
+		if (current_selection < 0)
+			current_selection = 1;
+		if (current_selection > 1)
+			current_selection = 0;
+		
+		switch(current_selection) {
+		case 0:
+			startgame_button.setFrame(0);
+			quit_button.setFrame(1);
+			break;
+		case 1:
+			startgame_button.setFrame(1);
+			quit_button.setFrame(0);
+			if (input::enter_key == true)
+				close_requested = true;
+			break;
+		}
+
+		SDL_RenderClear(renderer);
+		title.display(renderer);
+		startgame_button.display(renderer);
+		quit_button.display(renderer);
+		SDL_RenderPresent(renderer);
+		SDL_Delay(1000 / 10);
 	}
 
 	SDL_RenderClear(renderer);
 	title.display(renderer);
-	startgame_button.display(renderer, 0);
-	quit_button.display(renderer, 1);
+	startgame_button.display(renderer);
+	quit_button.display(renderer);
 	SDL_RenderPresent(renderer);
 	return 0;
 }

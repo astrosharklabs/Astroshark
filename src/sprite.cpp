@@ -20,11 +20,8 @@ void alphaDecrease(SDL_Texture *texture, int *alpha, int rate) {
 }
 
 void setRect(int x, int y, int w, int h, int *rectX, int *rectY, int *rectW, int *rectH) {
-	*rectX = x;
-		
-	*rectY = y;
-	
-	*rectW = w;
-	
+	*rectX = x;	
+	*rectY = y;	
+	*rectW = w;	
 	*rectH = h;
 }
