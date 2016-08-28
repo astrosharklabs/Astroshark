@@ -8,7 +8,7 @@
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-const char *windowTitle = "Astroshark Labs Testbox v0.3.4";
+const char *windowTitle = "Astroshark Labs Testbox v0.3.5";
 
 void loadTextures();
 void close();
