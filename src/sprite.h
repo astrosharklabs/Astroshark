@@ -46,6 +46,8 @@ typedef struct collision {
 /*Takes a texture and queries it onto a rectangle, thereby creating a sprite*/
 void loadPNGImageToTexture(SDL_Renderer *, int *, int *, SDL_Texture **, const char *);
 
+void setAlpha(SDL_Texture *, Uint8);
+
 void alphaIncrease(SDL_Texture *, int *, int);
 
 void alphaDecrease(SDL_Texture *, int *, int);
