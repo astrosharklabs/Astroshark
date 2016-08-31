@@ -1,5 +1,6 @@
 #include "input.h"
 #include "SDL.h"
+#include "constants.h"
 
 bool input::a_key = false;
 bool input::b_key = false;
@@ -45,14 +46,12 @@ bool input::right_mouse = false;
 int input::mouseX = 0;
 int input::mouseY = 0;
 
-bool close_requested = false;
-
 void checkInput() {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_QUIT:
-			close_requested = true;
+			SCREEN = QUIT;
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.scancode) {

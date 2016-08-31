@@ -47,7 +47,5 @@ namespace input {
 	extern int mouseY;
 }
 
-extern bool close_requested;
-
 void checkInput();
 #endif

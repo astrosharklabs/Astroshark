@@ -3,8 +3,7 @@
 #include "title.h"
 #include "buttons.h"
 #include "input.h"
-
-enum selection { START_GAME, OPTIONS, CREDITS, QUIT };
+#include "constants.h"
 
 int mainmenu(SDL_Renderer *renderer) {
 	title title;
@@ -49,7 +48,7 @@ int mainmenu(SDL_Renderer *renderer) {
 
 	int current_selection = -1;
 
-	while (close_requested == false) {
+	while (SCREEN == MAIN_MENU) {
 		checkInput();
 
 		if (startgame_button.mouseOver() == true)
@@ -77,21 +76,24 @@ int mainmenu(SDL_Renderer *renderer) {
 			options_button.setFrame(0);
 			credits_button.setFrame(0);
 			quit_button.setFrame(0);
-			if (input::enter_key == true || input::left_mouse == true);
+			if (input::enter_key == true || input::left_mouse == true)
+				return START_GAME;
 			break;
 		case OPTIONS:
 			startgame_button.setFrame(0);
 			options_button.setFrame(1);
 			credits_button.setFrame(0);
 			quit_button.setFrame(0);
-			if (input::enter_key == true || input::left_mouse == true);
+			if (input::enter_key == true || input::left_mouse == true)
+				return OPTIONS;
 			break;
 		case CREDITS:
 			startgame_button.setFrame(0);
 			options_button.setFrame(0);
 			credits_button.setFrame(1);
 			quit_button.setFrame(0);
-			if (input::enter_key == true || input::left_mouse == true);
+			if (input::enter_key == true || input::left_mouse == true)
+				return CREDITS;
 			break;
 		case QUIT:
 			startgame_button.setFrame(0);
@@ -99,7 +101,7 @@ int mainmenu(SDL_Renderer *renderer) {
 			credits_button.setFrame(0);
 			quit_button.setFrame(1);
 			if (input::enter_key == true || input::left_mouse == true)
-				close_requested = true;
+				return QUIT;
 			break;
 		}
 
@@ -113,5 +115,5 @@ int mainmenu(SDL_Renderer *renderer) {
 		SDL_Delay(1000 / 10);
 	}
 
-	return 0;
+	return QUIT;
 }

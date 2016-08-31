@@ -35,8 +35,12 @@ void initialize(int *debug) {
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 
-	mainmenu(renderer);
-
+	while (SCREEN != QUIT) {
+		if (SCREEN = MAIN_MENU)
+			SCREEN = mainmenu(renderer);
+		if (SCREEN == QUIT)
+			break;
+	}
 	close();
 
 	debug = 0;
