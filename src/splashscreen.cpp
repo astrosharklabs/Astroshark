@@ -11,7 +11,7 @@ splashScreen::splashScreen(SDL_Renderer *renderer) {
 	prop.alpha = 255;
 	SDL_SetTextureAlphaMod(splash_screenTexture, prop.alpha);
 }
-void splashScreen::display(SDL_Renderer *renderer) {
+void splashScreen::render(SDL_Renderer *renderer) {
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, splash_screenTexture, NULL, &prop.dstrect);
 	SDL_RenderPresent(renderer);

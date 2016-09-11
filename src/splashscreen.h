@@ -10,7 +10,7 @@
 class splashScreen {
 public:
 	splashScreen(SDL_Renderer *renderer);
-	void display(SDL_Renderer *renderer); //Displays the image at the given location
+	void render(SDL_Renderer *renderer); //renders the image at the given location
 	void fadeOut(SDL_Renderer *renderer); //Fades the image out
 private:
 	defaultProp prop;

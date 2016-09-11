@@ -11,3 +11,4 @@ void loadTexturefromIMG(SDL_Renderer *renderer, SDL_Texture **texture, char *fil
 SDL_Texture *splash_screenTexture = NULL;
 SDL_Texture *astroshark_titleTexture = NULL;
 SDL_Texture *buttons_texture = NULL;
+SDL_Texture *background_texture = NULL;

@@ -29,3 +29,29 @@ void setRect(int x, int y, int w, int h, SDL_Rect *rect) {
 	rect->w = w;	
 	rect->h = h;
 }
+
+bool testCollision(SDL_Rect x, SDL_Rect y) {
+	int leftX, rightX, topX, bottomX;
+	int leftY, rightY, topY, bottomY;
+
+	leftX = x.x;
+	rightX = x.x + x.w;
+	topX = x.y;
+	bottomX = x.y + x.h;
+
+	leftY = y.x;
+	rightY = y.x + y.w;
+	topY = y.y;
+	bottomY = y.y + y.h;
+
+	if (leftX <= rightY)
+		return false;
+	if (leftY <= rightX)
+		return false;
+	if (topX <= bottomY)
+		return false;
+	if (topY <= bottomX)
+		return false;
+
+	return true;
+}

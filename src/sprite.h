@@ -4,7 +4,7 @@
 #define sprite_h
 
 #include "SDL.h"
-
+enum orientation {NORTH, EAST, SOUTH, WEST};
 /*TEMPORARY*/
 typedef struct sprite {
 	int deltaX;
@@ -53,4 +53,6 @@ void alphaIncrease(SDL_Texture *, int *, int);
 void alphaDecrease(SDL_Texture *, int *, int);
 
 void setRect(int, int, int, int, SDL_Rect *);
+
+bool testCollision(SDL_Rect, SDL_Rect);
 #endif

@@ -10,7 +10,7 @@
 class button {
 public:
 	button(int, int, int, int);
-	void display(SDL_Renderer *); //Displays the image at the given location
+	void render(SDL_Renderer *); //renders the image at the given location
 	void fadeIn(SDL_Renderer *, int); //Fades the image out
 	void setXY(int, int);
 	void alphaInc(int);

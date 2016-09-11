@@ -4,6 +4,7 @@
 #include "buttons.h"
 #include "input.h"
 #include "constants.h"
+#include "background.h"
 
 int mainmenu(SDL_Renderer *renderer) {
 	title title;
@@ -31,14 +32,17 @@ int mainmenu(SDL_Renderer *renderer) {
 	quit_button.setFrame(0);
 	quit_button.setCollision(0, 475, 1280, 50);
 
+	background background(0, 0, 1920, 1920);
+
 	int alphaCounter = 0;
 	while (alphaCounter < 255) {
 		SDL_RenderClear(renderer);
-		title.display(renderer);
-		startgame_button.display(renderer);
-		options_button.display(renderer);
-		credits_button.display(renderer);
-		quit_button.display(renderer);
+		background.render(renderer);
+		title.render(renderer);
+		startgame_button.render(renderer);
+		options_button.render(renderer);
+		credits_button.render(renderer);
+		quit_button.render(renderer);
 		SDL_RenderPresent(renderer);
 		title.alphaInc(15);
 		startgame_button.alphaInc(15);
@@ -106,11 +110,12 @@ int mainmenu(SDL_Renderer *renderer) {
 		}
 
 		SDL_RenderClear(renderer);
-		title.display(renderer);
-		startgame_button.display(renderer);
-		options_button.display(renderer);
-		credits_button.display(renderer);
-		quit_button.display(renderer);
+		background.render(renderer);
+		title.render(renderer);
+		startgame_button.render(renderer);
+		options_button.render(renderer);
+		credits_button.render(renderer);
+		quit_button.render(renderer);
 		SDL_RenderPresent(renderer);
 		SDL_Delay(1000 / 10);
 	}

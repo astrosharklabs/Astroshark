@@ -13,7 +13,7 @@ title::title() {
 	prop.alpha = 0;
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
-void title::display(SDL_Renderer *renderer) {
+void title::render(SDL_Renderer *renderer) {
 	SDL_RenderCopy(renderer, prop.texture, NULL, &prop.dstrect);
 }
 void title::fadeIn(SDL_Renderer *renderer, int rate) {

@@ -12,4 +12,6 @@ extern SDL_Texture *splash_screenTexture;
 extern SDL_Texture *astroshark_titleTexture;
 
 extern SDL_Texture *buttons_texture;
+
+extern SDL_Texture *background_texture;
 #endif

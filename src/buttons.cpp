@@ -24,7 +24,7 @@ button::button(int dstX, int dstY, int dstW, int dstH) {
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 
-void button::display(SDL_Renderer *renderer) {
+void button::render(SDL_Renderer *renderer) {
 	SDL_RenderCopy(renderer, prop.texture, &frame[prop.frame].srcrect, &prop.dstrect);
 }
 
