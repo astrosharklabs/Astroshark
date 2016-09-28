@@ -4,6 +4,6 @@
 
 #include "SDL.h"
 
-int mainmenu (SDL_Renderer *);
+void mainmenu (SDL_Renderer *);
 
 #endif /*mainmenu_h*/

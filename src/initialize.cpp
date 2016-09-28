@@ -14,7 +14,7 @@ SDL_Window *gameWindow;
 SDL_Renderer *renderer;
 
 void initialize(int *debug) {
-
+	int i;
 	SDL_Init(SDL_INIT_VIDEO);
 	gameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	IMG_Init(IMG_INIT_PNG);
@@ -24,8 +24,11 @@ void initialize(int *debug) {
 	splashScreen splashScreen(renderer);
 	splashScreen.render(renderer);
 
+	//LOAD STUFF HERE
 	loadTextures();
-
+	for (i = 0; i < 9; i++) {
+		bkgrd[i].setup(0, 0, 1920, 1920);
+	}
 	//SDL_Delay(3000);
 	//SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp
@@ -35,10 +38,12 @@ void initialize(int *debug) {
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 
-	while (SCREEN != QUIT) {
-		if (SCREEN = MAIN_MENU)
-			SCREEN = mainmenu(renderer);
-		if (SCREEN == QUIT)
+	while (STATE != QUIT) {
+		if (STATE == MAIN_MENU)
+			mainmenu(renderer);
+		if (STATE == START_GAME)
+
+		if (STATE == QUIT)
 			break;
 	}
 	close();

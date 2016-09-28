@@ -4,6 +4,7 @@
 
 #include "SDL.h"
 #include "camera.h"
+#include "background.h"
 
 enum screen_state { MAIN_MENU = 1, START_GAME, OPTIONS, CREDITS, QUIT, PAUSE_MENU };
 
@@ -12,7 +13,8 @@ extern const int WINDOW_HEIGHT;
 
 extern const char *windowTitle;
 
-extern int SCREEN;
+extern int STATE;
 
 extern camera mainCamera;
+extern background bkgrd[9];
 #endif

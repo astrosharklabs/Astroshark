@@ -8,11 +8,12 @@
 
 class background {
 public:
-	background(int, int, int, int);
+	void setup(int, int, int, int);
 	void render(SDL_Renderer *);
 	void setXY(int, int);
 private:
 	defaultProp prop;
+	basicMove move;
 	int tile;
 };
 

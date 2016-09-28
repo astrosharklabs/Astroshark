@@ -51,7 +51,7 @@ void checkInput() {
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_QUIT:
-			SCREEN = QUIT;
+			STATE = QUIT;
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.scancode) {

@@ -9,7 +9,7 @@
 
 int tileNumber = 0;
 
-background::background(int x, int y, int w, int h) {
+void background::setup(int x, int y, int w, int h) {
 	prop.dstrect.x = x;
 	prop.dstrect.y = y;
 	prop.dstrect.w = w;

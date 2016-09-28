@@ -6,7 +6,7 @@
 #include "constants.h"
 #include "background.h"
 
-int mainmenu(SDL_Renderer *renderer) {
+void mainmenu(SDL_Renderer *renderer) {
 	title title;
 	button startgame_button(290, 325, 700, 50);
 	startgame_button.defFrame(0, 0, 700, 50, 0);
@@ -32,12 +32,12 @@ int mainmenu(SDL_Renderer *renderer) {
 	quit_button.setFrame(0);
 	quit_button.setCollision(0, 475, 1280, 50);
 
-	background background(0, 0, 1920, 1920);
+	//background background(0, 0, 1920, 1920);
 
 	int alphaCounter = 0;
 	while (alphaCounter < 255) {
 		SDL_RenderClear(renderer);
-		background.render(renderer);
+		bkgrd[0].render(renderer);
 		title.render(renderer);
 		startgame_button.render(renderer);
 		options_button.render(renderer);
@@ -52,7 +52,7 @@ int mainmenu(SDL_Renderer *renderer) {
 
 	int current_selection = -1;
 
-	while (SCREEN == MAIN_MENU) {
+	while (STATE == MAIN_MENU) {
 		checkInput();
 
 		if (startgame_button.mouseOver() == true)
@@ -81,7 +81,7 @@ int mainmenu(SDL_Renderer *renderer) {
 			credits_button.setFrame(0);
 			quit_button.setFrame(0);
 			if (input::enter_key == true || input::left_mouse == true)
-				return START_GAME;
+				STATE = START_GAME;
 			break;
 		case OPTIONS:
 			startgame_button.setFrame(0);
@@ -89,7 +89,7 @@ int mainmenu(SDL_Renderer *renderer) {
 			credits_button.setFrame(0);
 			quit_button.setFrame(0);
 			if (input::enter_key == true || input::left_mouse == true)
-				return OPTIONS;
+				STATE = OPTIONS;
 			break;
 		case CREDITS:
 			startgame_button.setFrame(0);
@@ -97,7 +97,7 @@ int mainmenu(SDL_Renderer *renderer) {
 			credits_button.setFrame(1);
 			quit_button.setFrame(0);
 			if (input::enter_key == true || input::left_mouse == true)
-				return CREDITS;
+				STATE = CREDITS;
 			break;
 		case QUIT:
 			startgame_button.setFrame(0);
@@ -105,12 +105,12 @@ int mainmenu(SDL_Renderer *renderer) {
 			credits_button.setFrame(0);
 			quit_button.setFrame(1);
 			if (input::enter_key == true || input::left_mouse == true)
-				return QUIT;
+				STATE = QUIT;
 			break;
 		}
 
 		SDL_RenderClear(renderer);
-		background.render(renderer);
+		bkgrd[0].render(renderer);
 		title.render(renderer);
 		startgame_button.render(renderer);
 		options_button.render(renderer);
@@ -119,6 +119,4 @@ int mainmenu(SDL_Renderer *renderer) {
 		SDL_RenderPresent(renderer);
 		SDL_Delay(1000 / 10);
 	}
-
-	return QUIT;
 }
