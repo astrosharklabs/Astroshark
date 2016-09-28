@@ -16,5 +16,5 @@ extern const char *windowTitle;
 extern int STATE;
 
 extern camera mainCamera;
-extern background bkgrd[9];
+extern background bckgrd[4];
 #endif
