@@ -14,7 +14,7 @@ SDL_Window *gameWindow;
 SDL_Renderer *renderer;
 
 void initialize(int *debug) {
-	int i;
+
 	SDL_Init(SDL_INIT_VIDEO);
 	gameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	IMG_Init(IMG_INIT_PNG);
@@ -26,9 +26,7 @@ void initialize(int *debug) {
 
 	//LOAD STUFF HERE
 	loadTextures();
-	for (i = 0; i < 9; i++) {
-		bkgrd[i].setup(0, 0, 1920, 1920);
-	}
+	loadBackgrounds();
 	//SDL_Delay(3000);
 	//SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp

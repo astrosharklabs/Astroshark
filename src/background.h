@@ -17,5 +17,6 @@ private:
 	int tile;
 };
 
-extern int tileNumber;
+void loadBackgrounds();
+void renderBackgrounds(SDL_Renderer *);
 #endif

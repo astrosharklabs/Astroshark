@@ -37,7 +37,7 @@ void mainmenu(SDL_Renderer *renderer) {
 	int alphaCounter = 0;
 	while (alphaCounter < 255) {
 		SDL_RenderClear(renderer);
-		bkgrd[0].render(renderer);
+		renderBackgrounds(renderer);
 		title.render(renderer);
 		startgame_button.render(renderer);
 		options_button.render(renderer);
@@ -110,7 +110,7 @@ void mainmenu(SDL_Renderer *renderer) {
 		}
 
 		SDL_RenderClear(renderer);
-		bkgrd[0].render(renderer);
+		renderBackgrounds(renderer);
 		title.render(renderer);
 		startgame_button.render(renderer);
 		options_button.render(renderer);
