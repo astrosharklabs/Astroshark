@@ -98,6 +98,7 @@ void bckgrdUpdate() {
 	bckgrd[bckgrdOrder[BL]].prop.dstrect.y = bckgrdOrigin.y;
 	bckgrd[bckgrdOrder[BR]].prop.dstrect.y = bckgrdOrigin.y;
 
+	//Stitching
 	if (bckgrd[bckgrdOrder[TL]].prop.dstrect.x > mainCamera.rect.x || bckgrd[bckgrdOrder[BL]].prop.dstrect.x > mainCamera.rect.x) {
 		bckgrd[bckgrdOrder[TR]].prop.dstrect.x = bckgrd[bckgrdOrder[TL]].prop.dstrect.x - bckgrd[bckgrdOrder[TR]].prop.dstrect.w;
 		bckgrd[bckgrdOrder[BR]].prop.dstrect.x = bckgrd[bckgrdOrder[BL]].prop.dstrect.x - bckgrd[bckgrdOrder[BR]].prop.dstrect.w;

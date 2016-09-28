@@ -5,8 +5,9 @@
 class camera {
 public:
 	SDL_Rect rect;
-	int deltaX;
-	int deltaY;
-	void updateXY(int, int);
+	int last_deltaX;
+	int last_deltaY;
+	void setXY(int, int);
+	void move(int, int);
 };
 #endif // !camera_h

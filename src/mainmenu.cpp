@@ -55,7 +55,7 @@ void mainmenu(SDL_Renderer *renderer) {
 	while (STATE == MAIN_MENU) {
 		checkInput();
 
-		bckgrdMove(-5, 2);
+		mainCamera.move(5, -1);
 
 		if (startgame_button.mouseOver() == true)
 			current_selection = START_GAME;

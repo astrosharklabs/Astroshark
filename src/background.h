@@ -17,7 +17,6 @@ public:
 	void orientate(int);
 	int designation;
 	defaultProp prop;
-	basicMove move;
 };
 
 void bckgrdLoad();
