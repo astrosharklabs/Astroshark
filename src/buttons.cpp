@@ -5,7 +5,7 @@
 #include "buttons.h"
 #include "input.h"
 
-button::button(int dstX, int dstY, int dstW, int dstH) {
+void button::setup(int dstX, int dstY, int dstW, int dstH) {
 	prop.texture = buttons_texture;
 
 	prop.dstrect.x = dstX;

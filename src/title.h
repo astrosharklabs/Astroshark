@@ -9,7 +9,7 @@
 
 class title {
 public:
-	title();
+	void setup();
 	void render(SDL_Renderer *renderer); //renders the image at the given location
 	void fadeIn(SDL_Renderer *renderer, int rate); //Fades the image out
 	void alphaInc(int);

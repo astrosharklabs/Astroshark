@@ -1,50 +1,17 @@
 #include <stdio.h>
 #include "SDL.h"
-#include "title.h"
-#include "buttons.h"
 #include "input.h"
 #include "constants.h"
-#include "background.h"
+#include "guiobjects.h"
 
 void mainmenu(SDL_Renderer *renderer) {
-	title title;
-	button startgame_button(290, 325, 700, 50);
-	startgame_button.defFrame(0, 0, 700, 50, 0);
-	startgame_button.defFrame(700, 0, 700, 50, 1);
-	startgame_button.setFrame(0);
-	startgame_button.setCollision(0, 325, 1280, 50);
-	
-	button options_button(290, 375, 700, 50);
-	options_button.defFrame(0, 50, 700, 50, 0);
-	options_button.defFrame(700, 50, 700, 50, 1);
-	options_button.setFrame(0);
-	options_button.setCollision(0, 375, 1280, 50);
-	
-	button credits_button(290, 425, 700, 50);
-	credits_button.defFrame(0, 100, 700, 50, 0);
-	credits_button.defFrame(700, 100, 700, 50, 1);
-	credits_button.setFrame(0);
-	credits_button.setCollision(0, 425, 1280, 50);
-
-	button quit_button(290, 475, 700, 50);
-	quit_button.defFrame(0, 150, 700, 50, 0);
-	quit_button.defFrame(700, 150, 700, 50, 1);
-	quit_button.setFrame(0);
-	quit_button.setCollision(0, 475, 1280, 50);
-
-	//background background(0, 0, 1920, 1920);
 
 	int alphaCounter = 0;
 	while (alphaCounter < 255) {
 		SDL_RenderClear(renderer);
-		bckgrdRender(renderer);
-		title.render(renderer);
-		startgame_button.render(renderer);
-		options_button.render(renderer);
-		credits_button.render(renderer);
-		quit_button.render(renderer);
+		GUIRender_MainMenu(renderer);
 		SDL_RenderPresent(renderer);
-		title.alphaInc(15);
+		title_image.alphaInc(15);
 		startgame_button.alphaInc(15);
 		quit_button.alphaInc(15);
 		alphaCounter += 15;
@@ -111,14 +78,9 @@ void mainmenu(SDL_Renderer *renderer) {
 			break;
 		}
 
-		SDL_RenderClear(renderer);
-		bckgrdRender(renderer);
-		title.render(renderer);
-		startgame_button.render(renderer);
-		options_button.render(renderer);
-		credits_button.render(renderer);
-		quit_button.render(renderer);
+		SDL_RenderClear(renderer); //MAKE FUNCTION IN CAMERA.CPP to handle renders within the camera renderSprites() | renderALLSprites()
+		GUIRender_MainMenu(renderer); //parallax scrolling for stars/nebulas/galaxies
 		SDL_RenderPresent(renderer);
-		SDL_Delay(1000 / 10);
+		SDL_Delay(1000 / 10); //fix timer, set clock on which the sprites are update (spriteRefreshTimer) for testing events every 1000 / 10 with 1000 / 60 fps or 1000 / 30 fps 
 	}
 }

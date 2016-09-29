@@ -4,7 +4,7 @@
 #include "sprite.h"
 #include "title.h"
 
-title::title() {
+void title::setup() {
 	prop.texture = astroshark_titleTexture;
 	prop.dstrect.w = 740;
 	prop.dstrect.h = 95;

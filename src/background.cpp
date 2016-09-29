@@ -30,7 +30,8 @@ void background::setXY(int x, int y) {
 }
 
 void background::render(SDL_Renderer *renderer) {
-	SDL_RenderCopyEx(renderer, background_texture, NULL, &prop.dstrect, prop.defaultOrientation, NULL, SDL_FLIP_NONE);
+	if (testCollision(prop.dstrect, mainCamera.rect) == true)
+		SDL_RenderCopyEx(renderer, background_texture, NULL, &prop.dstrect, prop.defaultOrientation, NULL, SDL_FLIP_NONE);
 }
 
 void background::orientate(int angle) {

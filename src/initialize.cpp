@@ -5,6 +5,7 @@
 #include "textures.h"
 #include "mainmenu.h"
 #include "splashscreen.h"
+#include "guiobjects.h"
 #include "constants.h"
 
 void loadTextures();
@@ -27,6 +28,7 @@ void initialize(int *debug) {
 	//LOAD STUFF HERE
 	loadTextures();
 	bckgrdLoad();
+	GUILoad();
 	mainCamera.rect.x = 0;
 	mainCamera.rect.y = 0;
 	mainCamera.rect.w = WINDOW_WIDTH;
