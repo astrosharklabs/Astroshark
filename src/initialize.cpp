@@ -3,10 +3,10 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "textures.h"
-#include "mainmenu.h"
 #include "splashscreen.h"
 #include "guiobjects.h"
 #include "constants.h"
+#include "statemanager.h"
 
 void loadTextures();
 void close();
@@ -42,14 +42,8 @@ void initialize(int *debug) {
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 
-	while (STATE != QUIT) {
-		if (STATE == MAIN_MENU)
-			mainmenu(renderer);
-		if (STATE == START_GAME)
+	initialize_StateManager(renderer);
 
-		if (STATE == QUIT)
-			break;
-	}
 	close();
 
 	debug = 0;

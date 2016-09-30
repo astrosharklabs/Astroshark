@@ -4,9 +4,10 @@
 //Include States Here
 #include "mainmenu.h"
 
-void initialize_StateManager(SDL_Renderer *) {
+void initialize_StateManager(SDL_Renderer *renderer) {
  
   while (STATE != QUIT) {
+
    switch (STATE) {
      case MAIN_MENU:
        mainmenu(renderer);
@@ -17,4 +18,5 @@ void initialize_StateManager(SDL_Renderer *) {
        break;
    }
   }
+
 }
