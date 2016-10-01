@@ -6,7 +6,8 @@
 #include "constants.h"
 #include "timer.h"
 
-timer GUItimer;
+timer GUIbutton_timer;
+timer GUIkeydown_timer;
 
 title title_image;
 button startgame_button;
@@ -16,7 +17,8 @@ button quit_button;
 
 void GUILoad() {
 
-	GUItimer.setup();
+	GUIbutton_timer.setup();
+	GUIkeydown_timer.setup();
 
 	title_image.setup();
 
