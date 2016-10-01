@@ -8,7 +8,7 @@ const int WINDOW_HEIGHT = 720;
 
 int STATE = MAIN_MENU;
 
-const char *windowTitle = "Astroshark Labs Testbox v0.5.0";
+const char *windowTitle = "Astroshark Labs Testbox v0.5.1";
 
 camera mainCamera;
 

@@ -5,7 +5,7 @@
 #include "guiobjects.h"
 
 void mainmenu(SDL_Renderer *renderer) {
-
+	GUItimer.start();
 	int alphaCounter = 0;
 	while (alphaCounter < 255) {
 		SDL_RenderClear(renderer);
@@ -20,9 +20,11 @@ void mainmenu(SDL_Renderer *renderer) {
 	int current_selection = -1;
 
 	while (STATE == MAIN_MENU) {
+		printf("g:%f\n", GUItimer.getCurrentSeconds());
+		//BROKEN AND THE STITCHING IS BROKEN TOO
 		checkInput();
 
-		mainCamera.move(5, -1);
+		mainCamera.move(3, -1);
 
 		if (startgame_button.mouseOver() == true)
 			current_selection = START_GAME;
@@ -33,10 +35,13 @@ void mainmenu(SDL_Renderer *renderer) {
 		if (quit_button.mouseOver() == true)
 			current_selection = QUIT;
 
-		if (input::down_key == true)
-			current_selection++;
-		if (input::up_key == true)
-			current_selection--;
+		if (GUItimer.getCurrentSeconds() >= (1.0 / 9.0)) { //put seconds in class
+			if (input::down_key == true)
+				current_selection++;
+			if (input::up_key == true)
+				current_selection--;
+			GUItimer.start();
+		}
 
 		if (current_selection < START_GAME)
 			current_selection = QUIT;
@@ -81,6 +86,6 @@ void mainmenu(SDL_Renderer *renderer) {
 		SDL_RenderClear(renderer); //MAKE FUNCTION IN CAMERA.CPP to handle renders within the camera renderSprites() | renderALLSprites()
 		GUIRender_MainMenu(renderer); //parallax scrolling for stars/nebulas/galaxies
 		SDL_RenderPresent(renderer);
-		SDL_Delay(1000 / 10); //fix timer, set clock on which the sprites are update (spriteRefreshTimer) for testing events every 1000 / 10 with 1000 / 60 fps or 1000 / 30 fps 
+		//SDL_Delay(1000 / 10); //fix timer, set clock on which the sprites are update (spriteRefreshTimer) for testing events every 1000 / 10 with 1000 / 60 fps or 1000 / 30 fps 
 	}
 }

@@ -13,6 +13,7 @@ public:
 
 	Uint32 getTicks();
 	Uint32 getStoppedTicks(); //Gets last stopped ticks
+	float getCurrentSeconds();
 
 	bool isStarted();
 	bool isPaused();

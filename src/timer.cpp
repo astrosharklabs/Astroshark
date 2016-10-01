@@ -45,6 +45,10 @@ void timer::unpause() {
 	}
 }
 
+float timer::getCurrentSeconds() {
+	return (float)getTicks() / 1000;
+}
+
 Uint32 timer::getTicks() {
 	Uint32 ticks = 0;
 

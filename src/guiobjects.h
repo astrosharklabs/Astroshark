@@ -4,8 +4,11 @@
 #include "camera.h"
 #include "buttons.h"
 #include "constants.h"
+#include "timer.h"
 
 #ifndef guiobjects_h
+
+extern timer GUItimer;
 
 extern title title_image;
 extern button startgame_button;

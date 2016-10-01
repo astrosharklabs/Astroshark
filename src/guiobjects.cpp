@@ -4,6 +4,9 @@
 #include "camera.h"
 #include "buttons.h"
 #include "constants.h"
+#include "timer.h"
+
+timer GUItimer;
 
 title title_image;
 button startgame_button;
@@ -12,6 +15,8 @@ button credits_button;
 button quit_button;
 
 void GUILoad() {
+
+	GUItimer.setup();
 
 	title_image.setup();
 
