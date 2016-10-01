@@ -100,33 +100,33 @@ void bckgrdUpdate() {
 	bckgrd[bckgrdOrder[BR]].prop.dstrect.y = bckgrdOrigin.y;
 
 	//Stitching
-	if (bckgrd[bckgrdOrder[TL]].prop.dstrect.x > mainCamera.rect.x || bckgrd[bckgrdOrder[BL]].prop.dstrect.x > mainCamera.rect.x) {
-		bckgrd[bckgrdOrder[TR]].prop.dstrect.x = bckgrd[bckgrdOrder[TL]].prop.dstrect.x - bckgrd[bckgrdOrder[TR]].prop.dstrect.w;
-		bckgrd[bckgrdOrder[BR]].prop.dstrect.x = bckgrd[bckgrdOrder[BL]].prop.dstrect.x - bckgrd[bckgrdOrder[BR]].prop.dstrect.w;
+	if (bckgrd[bckgrdOrder[TL]].prop.dstrect.x + mainCamera.rect.x  > mainCamera.rect.x || bckgrd[bckgrdOrder[BL]].prop.dstrect.x + mainCamera.rect.x  > mainCamera.rect.x) {
+		bckgrd[bckgrdOrder[TR]].prop.dstrect.x = bckgrd[bckgrdOrder[TL]].prop.dstrect.x - bckgrd[bckgrdOrder[TR]].prop.dstrect.w - mainCamera.rect.x;
+		bckgrd[bckgrdOrder[BR]].prop.dstrect.x = bckgrd[bckgrdOrder[BL]].prop.dstrect.x - bckgrd[bckgrdOrder[BR]].prop.dstrect.w - mainCamera.rect.x;
 		swapOrder(TL, TR);
 		swapOrder(BL, BR);
 		bckgrdOrigin.x -= bckgrd[bckgrdOrder[TR]].prop.dstrect.w;
 	}
 
-	if (bckgrd[bckgrdOrder[TR]].prop.dstrect.x + bckgrd[bckgrdOrder[TR]].prop.dstrect.w < mainCamera.rect.x + mainCamera.rect.w || bckgrd[bckgrdOrder[BR]].prop.dstrect.x + bckgrd[bckgrdOrder[BR]].prop.dstrect.w < mainCamera.rect.x + mainCamera.rect.w) {
-		bckgrd[bckgrdOrder[TL]].prop.dstrect.x = bckgrd[bckgrdOrder[TR]].prop.dstrect.x + bckgrd[bckgrdOrder[TR]].prop.dstrect.w;
-		bckgrd[bckgrdOrder[BL]].prop.dstrect.x = bckgrd[bckgrdOrder[BR]].prop.dstrect.x + bckgrd[bckgrdOrder[BR]].prop.dstrect.w;
+	if (bckgrd[bckgrdOrder[TR]].prop.dstrect.x + bckgrd[bckgrdOrder[TR]].prop.dstrect.w + mainCamera.rect.x < mainCamera.rect.x + mainCamera.rect.w || bckgrd[bckgrdOrder[BR]].prop.dstrect.x + bckgrd[bckgrdOrder[BR]].prop.dstrect.w + mainCamera.rect.x  < mainCamera.rect.x + mainCamera.rect.w) {
+		bckgrd[bckgrdOrder[TL]].prop.dstrect.x = bckgrd[bckgrdOrder[TR]].prop.dstrect.x + bckgrd[bckgrdOrder[TR]].prop.dstrect.w - mainCamera.rect.x;
+		bckgrd[bckgrdOrder[BL]].prop.dstrect.x = bckgrd[bckgrdOrder[BR]].prop.dstrect.x + bckgrd[bckgrdOrder[BR]].prop.dstrect.w - mainCamera.rect.x;
 		swapOrder(TL, TR);
 		swapOrder(BL, BR);
 		bckgrdOrigin.x += bckgrd[bckgrdOrder[TL]].prop.dstrect.w;
 	}
 
-	if (bckgrd[bckgrdOrder[TL]].prop.dstrect.y > mainCamera.rect.y || bckgrd[bckgrdOrder[TR]].prop.dstrect.y > mainCamera.rect.y) {
-		bckgrd[bckgrdOrder[BL]].prop.dstrect.y = bckgrd[bckgrdOrder[TL]].prop.dstrect.y - bckgrd[bckgrdOrder[BL]].prop.dstrect.h;
-		bckgrd[bckgrdOrder[BR]].prop.dstrect.y = bckgrd[bckgrdOrder[TR]].prop.dstrect.y - bckgrd[bckgrdOrder[BR]].prop.dstrect.h;
+	if (bckgrd[bckgrdOrder[TL]].prop.dstrect.y + mainCamera.rect.y  > mainCamera.rect.y || bckgrd[bckgrdOrder[TR]].prop.dstrect.y + mainCamera.rect.y > mainCamera.rect.y) {
+		bckgrd[bckgrdOrder[BL]].prop.dstrect.y = bckgrd[bckgrdOrder[TL]].prop.dstrect.y - bckgrd[bckgrdOrder[BL]].prop.dstrect.h - mainCamera.rect.y;
+		bckgrd[bckgrdOrder[BR]].prop.dstrect.y = bckgrd[bckgrdOrder[TR]].prop.dstrect.y - bckgrd[bckgrdOrder[BR]].prop.dstrect.h - mainCamera.rect.y;
 		swapOrder(TL, BL);
 		swapOrder(TR, BR);
 		bckgrdOrigin.y -= bckgrd[bckgrdOrder[BL]].prop.dstrect.h;
 	}
 
-	if (bckgrd[bckgrdOrder[BL]].prop.dstrect.y + bckgrd[bckgrdOrder[BL]].prop.dstrect.h < mainCamera.rect.y + mainCamera.rect.h || bckgrd[bckgrdOrder[BR]].prop.dstrect.y + bckgrd[bckgrdOrder[BR]].prop.dstrect.h < mainCamera.rect.y + mainCamera.rect.h) {
-		bckgrd[bckgrdOrder[TL]].prop.dstrect.y = bckgrd[bckgrdOrder[BL]].prop.dstrect.y + bckgrd[bckgrdOrder[TL]].prop.dstrect.h;
-		bckgrd[bckgrdOrder[TR]].prop.dstrect.y = bckgrd[bckgrdOrder[BR]].prop.dstrect.y + bckgrd[bckgrdOrder[TR]].prop.dstrect.h;
+	if (bckgrd[bckgrdOrder[BL]].prop.dstrect.y + bckgrd[bckgrdOrder[BL]].prop.dstrect.h + mainCamera.rect.y < mainCamera.rect.y + mainCamera.rect.h || bckgrd[bckgrdOrder[BR]].prop.dstrect.y + bckgrd[bckgrdOrder[BR]].prop.dstrect.h + mainCamera.rect.y < mainCamera.rect.y + mainCamera.rect.h) {
+		bckgrd[bckgrdOrder[TL]].prop.dstrect.y = bckgrd[bckgrdOrder[BL]].prop.dstrect.y + bckgrd[bckgrdOrder[TL]].prop.dstrect.h - mainCamera.rect.y;
+		bckgrd[bckgrdOrder[TR]].prop.dstrect.y = bckgrd[bckgrdOrder[BR]].prop.dstrect.y + bckgrd[bckgrdOrder[TR]].prop.dstrect.h - mainCamera.rect.y;
 		swapOrder(TL, BL);
 		swapOrder(TR, BR);
 		bckgrdOrigin.y += bckgrd[bckgrdOrder[BR]].prop.dstrect.h;

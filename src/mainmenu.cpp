@@ -3,9 +3,9 @@
 #include "input.h"
 #include "constants.h"
 #include "guiobjects.h"
+#include "background.h"
 
 void mainmenu(SDL_Renderer *renderer) {
-	GUIbutton_timer.start();
 	float keydown_rate = 1;
 	int buttonCycle_max = 12;
 
@@ -23,8 +23,6 @@ void mainmenu(SDL_Renderer *renderer) {
 	int current_selection = -1;
 
 	while (STATE == MAIN_MENU) {
-		//printf("g:%f\n", GUIbutton_timer.getCurrentSeconds());
-		//BROKEN AND THE STITCHING IS BROKEN TOO
 		checkInput();
 
 		mainCamera.move(3, -1);
@@ -147,6 +145,5 @@ void mainmenu(SDL_Renderer *renderer) {
 		//SDL_Delay(1000 / 10); //fix timer, set clock on which the sprites are update (spriteRefreshTimer) for testing events every 1000 / 10 with 1000 / 60 fps or 1000 / 30 fps 
 	}
 
-	GUIbutton_timer.stop();
 	GUIkeydown_timer.stop();
 }

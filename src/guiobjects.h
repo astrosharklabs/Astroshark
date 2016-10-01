@@ -8,7 +8,6 @@
 
 #ifndef guiobjects_h
 
-extern timer GUIbutton_timer;
 extern timer GUIkeydown_timer;
 
 extern title title_image;
@@ -19,7 +18,5 @@ extern button quit_button;
 
 void GUILoad();
 void GUIRender_MainMenu(SDL_Renderer *);
-
-void GUIkeydownTest_exponential();
 
 #endif
