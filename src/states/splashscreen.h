@@ -1,8 +1,8 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
-#include "textures.h"
-#include "sprite.h"
+#include "../engine/textures.h"
+#include "../engine/sprite.h"
 
 #ifndef splashscreen_h
 #define splashscreen_h

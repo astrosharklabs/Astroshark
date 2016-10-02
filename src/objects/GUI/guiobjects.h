@@ -1,10 +1,9 @@
 #pragma once
 #include "SDL.h"
 #include "title.h"
-#include "camera.h"
 #include "buttons.h"
-#include "constants.h"
-#include "timer.h"
+#include "../../engine/constants.h"
+#include "../../engine/timer.h"
 
 #ifndef guiobjects_h
 

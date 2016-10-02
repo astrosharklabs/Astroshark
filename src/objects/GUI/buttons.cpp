@@ -1,9 +1,9 @@
 #include "SDL.h"
 #include "SDL_image.h"
-#include "textures.h"
-#include "sprite.h"
+#include "../../engine/textures.h"
+#include "../../engine/sprite.h"
 #include "buttons.h"
-#include "input.h"
+#include "../../engine/input.h"
 
 void button::setup(int dstX, int dstY, int dstW, int dstH) {
 	prop.texture = buttons_texture;

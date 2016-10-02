@@ -1,7 +1,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
-#include "textures.h"
-#include "sprite.h"
+#include "../engine/textures.h"
+#include "../engine/sprite.h"
 #include "splashscreen.h"
 
 splashScreen::splashScreen(SDL_Renderer *renderer) {

@@ -2,7 +2,7 @@
 #ifndef camera_h
 #define camera_h
 #include "SDL.h"
-#include "timer.h"
+#include "../engine/timer.h"
 class camera {
 public:
 	SDL_Rect rect;

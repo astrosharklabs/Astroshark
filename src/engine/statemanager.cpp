@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "SDL.h"
 //Include States Here
-#include "mainmenu.h"
+#include "../states/mainmenu.h"
 
 void initialize_StateManager(SDL_Renderer *renderer) {
  

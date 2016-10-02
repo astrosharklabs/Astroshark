@@ -3,8 +3,8 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "textures.h"
-#include "splashscreen.h"
-#include "guiobjects.h"
+#include "../states/splashscreen.h"
+#include "../objects/GUI/guiobjects.h"
 #include "constants.h"
 #include "statemanager.h"
 

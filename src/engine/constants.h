@@ -3,8 +3,8 @@
 #define constants_h
 
 #include "SDL.h"
-#include "camera.h"
-#include "background.h"
+#include "../objects/camera.h"
+#include "../objects/background.h"
 
 enum screen_state { MAIN_MENU = 1, START_GAME, OPTIONS, CREDITS, QUIT, PAUSE_MENU };
 

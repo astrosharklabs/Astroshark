@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "SDL.h"
-#include "input.h"
-#include "constants.h"
-#include "guiobjects.h"
-#include "background.h"
+#include "../engine/input.h"
+#include "../engine/constants.h"
+#include "../objects/GUI/guiobjects.h"
+#include "../objects/background.h"
 
 void mainmenu(SDL_Renderer *renderer) {
 	mainCamera.timer.start();
@@ -25,7 +25,7 @@ void mainmenu(SDL_Renderer *renderer) {
 
 	while (STATE == MAIN_MENU) {
 		checkInput();
-		if (mainCamera.timer.getCurrentSeconds() >= (1.0 / 40.0)) { //Regulates camera movement to 1/40th of a second
+		if (mainCamera.timer.getCurrentSeconds() >= (1.0 / 35.0)) { //Regulates camera movement to 1/35th of a second
 			mainCamera.move(3, -1);
 			mainCamera.timer.start();
 		}

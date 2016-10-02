@@ -1,7 +1,6 @@
 #pragma once
 #include "SDL.h"
-#include "sprite.h"
-#include "textures.h"
+#include "../engine/sprite.h"
 
 #ifndef background_h
 #define background_h

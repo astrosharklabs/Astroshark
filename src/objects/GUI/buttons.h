@@ -1,8 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
-#include "textures.h"
-#include "sprite.h"
+#include "../../engine/sprite.h"
 
 #ifndef buttons_h
 #define buttons_h

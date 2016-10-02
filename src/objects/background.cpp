@@ -1,8 +1,8 @@
 #include "background.h"
 #include "SDL.h"
-#include "textures.h"
-#include "constants.h"
-#include "sprite.h"
+#include "../engine/textures.h"
+#include "../engine/constants.h"
+#include "../engine/sprite.h"
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
