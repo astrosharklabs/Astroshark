@@ -6,6 +6,7 @@
 #include "background.h"
 
 void mainmenu(SDL_Renderer *renderer) {
+	mainCamera.timer.start();
 	float keydown_rate = 1;
 	int buttonCycle_max = 12;
 
@@ -24,8 +25,10 @@ void mainmenu(SDL_Renderer *renderer) {
 
 	while (STATE == MAIN_MENU) {
 		checkInput();
-
-		mainCamera.move(3, -1);
+		if (mainCamera.timer.getCurrentSeconds() >= (1.0 / 40.0)) { //Regulates camera movement to 1/40th of a second
+			mainCamera.move(3, -1);
+			mainCamera.timer.start();
+		}
 
 		if (startgame_button.mouseOver() == true) {
 			current_selection = START_GAME;
@@ -139,7 +142,7 @@ void mainmenu(SDL_Renderer *renderer) {
 			quit_button.setFrame(0);
 		}
 
-		SDL_RenderClear(renderer); //MAKE FUNCTION IN CAMERA.CPP to handle renders within the camera renderSprites() | renderALLSprites()
+		SDL_RenderClear(renderer);
 		GUIRender_MainMenu(renderer); //parallax scrolling for stars/nebulas/galaxies
 		SDL_RenderPresent(renderer);
 		//SDL_Delay(1000 / 10); //fix timer, set clock on which the sprites are update (spriteRefreshTimer) for testing events every 1000 / 10 with 1000 / 60 fps or 1000 / 30 fps 

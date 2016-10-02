@@ -29,10 +29,7 @@ void initialize(int *debug) {
 	loadTextures();
 	bckgrdLoad();
 	GUILoad();
-	mainCamera.rect.x = 0;
-	mainCamera.rect.y = 0;
-	mainCamera.rect.w = WINDOW_WIDTH;
-	mainCamera.rect.h = WINDOW_HEIGHT;
+	mainCamera.setup(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	//SDL_Delay(3000);
 	//SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp
