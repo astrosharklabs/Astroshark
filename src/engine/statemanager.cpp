@@ -16,6 +16,12 @@ void initialize_StateManager(SDL_Renderer *renderer) {
 		case START_GAME:
 			arcadeMode(renderer);
 			break;
+		case OPTIONS:
+			STATE = MAIN_MENU; //Temporary
+			break;
+		case CREDITS:
+			STATE = MAIN_MENU; //Temporary
+			break;
 		case QUIT:
 			break;
 		}

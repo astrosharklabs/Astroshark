@@ -27,12 +27,12 @@ typedef struct defaultProp {
 	SDL_Texture *texture;
 } defaultProp;
 
-typedef struct basicMove {
+typedef struct basicMovement {
 	int deltaX;
 	int deltaY;
 	int speed;
 	int rotate;
-} basicMove;
+} basicMovement;
 
 typedef struct animation {
 	SDL_Rect srcrect;

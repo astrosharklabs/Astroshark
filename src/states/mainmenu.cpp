@@ -20,8 +20,7 @@ void mainmenu(SDL_Renderer *renderer) {
 		title_image.alphaInc(15);
 		startgame_button.alphaInc(15);
 		quit_button.alphaInc(15);
-		for (i = 0; i < 4; i++)
-			bckgrd[i].alphaInc(15);
+		bckgrd[0].alphaInc(15);
 
 		alphaCounter += 15;
 	}
@@ -164,8 +163,7 @@ void mainmenu(SDL_Renderer *renderer) {
 		title_image.alphaDec(15);
 		startgame_button.alphaDec(15);
 		quit_button.alphaDec(15);
-		for (i = 0; i < 4; i++)
-			bckgrd[i].alphaDec(15);
+		bckgrd[0].alphaDec(15);
 
 		alphaCounter -= 15;
 	}

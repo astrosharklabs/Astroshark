@@ -18,8 +18,7 @@ void arcadeMode(SDL_Renderer *renderer) {
 		SDL_RenderPresent(renderer);
 		//Change Alpha
 
-		for (i = 0; i < 4; i++)
-			bckgrd[i].alphaInc(15);
+		bckgrd[0].alphaInc(15);
 
 		alphaCounter += 15;
 	}
