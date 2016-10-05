@@ -15,6 +15,8 @@ public:
 	void setXY(int, int);
 	void orientate(int);
 	int designation;
+	void alphaInc(int);
+	void alphaDec(int);
 	defaultProp prop;
 };
 

@@ -13,6 +13,8 @@ SDL_Point bckgrdOrigin;
 int bckgrdOrder[4] = { 0, 1, 2, 3 };
 
 void background::setup(int x, int y, int w, int h) {
+	prop.texture = background_texture;
+
 	prop.dstrect.x = x;
 	prop.dstrect.y = y;
 	prop.dstrect.w = w;
@@ -22,6 +24,9 @@ void background::setup(int x, int y, int w, int h) {
 
 	prop.defaultOrientation = std::rand() % 4;
 	prop.defaultOrientation *= 90;
+
+	prop.alpha = 0;
+	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 
 void background::setXY(int x, int y) {
@@ -36,6 +41,14 @@ void background::render(SDL_Renderer *renderer) {
 
 void background::orientate(int angle) {
 	prop.defaultOrientation = angle;
+}
+
+void background::alphaInc(int rate) {
+	alphaIncrease(prop.texture, &prop.alpha, rate);
+}
+
+void background::alphaDec(int rate) {
+	alphaDecrease(prop.texture, &prop.alpha, rate);
 }
 
 void delta() {

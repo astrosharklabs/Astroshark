@@ -7,6 +7,8 @@
 
 void mainmenu(SDL_Renderer *renderer) {
 	mainCamera.timer.start();
+	mainCamera.setXY(0, 0);
+	int i;
 	float keydown_rate = 1;
 	int buttonCycle_max = 12;
 
@@ -18,6 +20,9 @@ void mainmenu(SDL_Renderer *renderer) {
 		title_image.alphaInc(15);
 		startgame_button.alphaInc(15);
 		quit_button.alphaInc(15);
+		for (i = 0; i < 4; i++)
+			bckgrd[i].alphaInc(15);
+
 		alphaCounter += 15;
 	}
 
@@ -143,10 +148,25 @@ void mainmenu(SDL_Renderer *renderer) {
 		}
 
 		SDL_RenderClear(renderer);
+		//Render things here
 		GUIRender_MainMenu(renderer); //parallax scrolling for stars/nebulas/galaxies
 		SDL_RenderPresent(renderer);
 		//SDL_Delay(1000 / 10); //fix timer, set clock on which the sprites are update (spriteRefreshTimer) for testing events every 1000 / 10 with 1000 / 60 fps or 1000 / 30 fps 
 	}
 
 	GUIkeydown_timer.stop();
+
+	/*Fade Out*/
+	while (alphaCounter > 0) {
+		SDL_RenderClear(renderer);
+		GUIRender_MainMenu(renderer);
+		SDL_RenderPresent(renderer);
+		title_image.alphaDec(15);
+		startgame_button.alphaDec(15);
+		quit_button.alphaDec(15);
+		for (i = 0; i < 4; i++)
+			bckgrd[i].alphaDec(15);
+
+		alphaCounter -= 15;
+	}
 }
