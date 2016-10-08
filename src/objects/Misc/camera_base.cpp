@@ -1,11 +1,11 @@
-#include "camera.h"
-#include "background.h"
+#include "camera_base.h"
+#include "background_base.h"
 
 void updateSprites(int deltaX, int deltaY) {
 	bckgrdMove(deltaX, deltaY);
 }
 
-void camera::setup(int x, int y, int w, int h) {
+void camera_base::setup(int x, int y, int w, int h) {
 	rect.x = x;
 	rect.y = y;
 	rect.w = w;
@@ -13,12 +13,12 @@ void camera::setup(int x, int y, int w, int h) {
 	timer.setup();
 }
 
-void camera::setXY(int x, int y) {
+void camera_base::setXY(int x, int y) {
 	rect.x = x;
 	rect.y = y;
 }
 
-void camera::move(int deltaX, int deltaY) {
+void camera_base::move(int deltaX, int deltaY) {
 	last_deltaX = deltaX;
 	last_deltaY = deltaY;
 	rect.x += deltaX;

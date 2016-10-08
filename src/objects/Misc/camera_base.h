@@ -1,9 +1,9 @@
 #pragma once
-#ifndef camera_h
-#define camera_h
+#ifndef camera_base_h
+#define camera_base_h
 #include "SDL.h"
-#include "../engine/timer.h"
-class camera {
+#include "../../engine/timer.h"
+class camera_base {
 public:
 	SDL_Rect rect;
 	timer timer;

@@ -2,10 +2,10 @@
 #include "SDL_image.h"
 #include "../../engine/textures.h"
 #include "../../engine/sprite.h"
-#include "buttons.h"
+#include "button_base.h"
 #include "../../engine/input.h"
 
-void button::setup(int dstX, int dstY, int dstW, int dstH) {
+void button_base::setup(int dstX, int dstY, int dstW, int dstH) {
 	prop.texture = buttons_texture;
 
 	prop.dstrect.x = dstX;
@@ -24,11 +24,11 @@ void button::setup(int dstX, int dstY, int dstW, int dstH) {
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 
-void button::render(SDL_Renderer *renderer) {
+void button_base::render(SDL_Renderer *renderer) {
 	SDL_RenderCopy(renderer, prop.texture, &frame[prop.frame].srcrect, &prop.dstrect);
 }
 
-void button::fadeIn(SDL_Renderer *renderer, int rate) {
+void button_base::fadeIn(SDL_Renderer *renderer, int rate) {
 	while (prop.alpha < 255) {
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, prop.texture, &frame[prop.frame].srcrect, &prop.dstrect);
@@ -39,31 +39,31 @@ void button::fadeIn(SDL_Renderer *renderer, int rate) {
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 
-void button::setXY(int dstX, int dstY) {
+void button_base::setXY(int dstX, int dstY) {
 	setRect(dstX, dstY, NULL, NULL, &prop.dstrect);
 }
 
-void button::alphaInc(int rate) {
+void button_base::alphaInc(int rate) {
 	alphaIncrease(prop.texture, &prop.alpha, rate);
 }
 
-void button::alphaDec(int rate) {
+void button_base::alphaDec(int rate) {
 	alphaDecrease(prop.texture, &prop.alpha, rate);
 }
 
-void button::defFrame(int srcX, int srcY, int srcW, int srcH, int frameN) {
+void button_base::defFrame(int srcX, int srcY, int srcW, int srcH, int frameN) {
 	setRect(srcX, srcY, srcW, srcH, &frame[frameN].srcrect);
 }
 
-void button::setFrame(int frameN) {
+void button_base::setFrame(int frameN) {
 	prop.frame = frameN;
 }
 
-void button::setCollision(int x, int y, int w, int h) {
+void button_base::setCollision(int x, int y, int w, int h) {
 	setRect(x, y, w, h, &collision.hitbox);
 }
 
-bool button::mouseOver() {
+bool button_base::mouseOver() {
 	SDL_GetMouseState(&input::mouseX, &input::mouseY);
 
 	if (input::mouseX < collision.hitbox.x)

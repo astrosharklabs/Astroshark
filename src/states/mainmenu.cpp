@@ -2,8 +2,8 @@
 #include "SDL.h"
 #include "../engine/input.h"
 #include "../engine/constants.h"
-#include "../objects/GUI/guiobjects.h"
-#include "../objects/background.h"
+#include "../objects/GUI.h"
+#include "../objects/Misc/background_base.h"
 
 void mainmenu(SDL_Renderer *renderer) {
 	mainCamera.timer.start();
@@ -17,9 +17,9 @@ void mainmenu(SDL_Renderer *renderer) {
 		SDL_RenderClear(renderer);
 		GUIRender_MainMenu(renderer);
 		SDL_RenderPresent(renderer);
-		title_image.alphaInc(15);
-		startgame_button.alphaInc(15);
-		quit_button.alphaInc(15);
+		mainMenu.title_image.alphaInc(15);
+		mainMenu.startgame_button.alphaInc(15);
+		mainMenu.quit_button.alphaInc(15);
 		bckgrd[0].alphaInc(15);
 
 		alphaCounter += 15;
@@ -34,22 +34,22 @@ void mainmenu(SDL_Renderer *renderer) {
 			mainCamera.timer.start();
 		}
 
-		if (startgame_button.mouseOver() == true) {
+		if (mainMenu.startgame_button.mouseOver() == true) {
 			current_selection = START_GAME;
 			if (input::left_mouse == true)
 				STATE = START_GAME;
 		}
-		if (options_button.mouseOver() == true) {
+		if (mainMenu.options_button.mouseOver() == true) {
 			current_selection = OPTIONS;
 			if (input::left_mouse == true)
 				STATE = OPTIONS;
 		}
-		if (credits_button.mouseOver() == true) {
+		if (mainMenu.credits_button.mouseOver() == true) {
 			current_selection = CREDITS;
 			if (input::left_mouse == true)
 				STATE = CREDITS;
 		}
-		if (quit_button.mouseOver() == true) {
+		if (mainMenu.quit_button.mouseOver() == true) {
 			current_selection = QUIT;
 			if (input::left_mouse == true)
 				STATE = QUIT;
@@ -108,42 +108,42 @@ void mainmenu(SDL_Renderer *renderer) {
 
 		switch(current_selection) {
 		case START_GAME:
-			startgame_button.setFrame(1);
-			options_button.setFrame(0);
-			credits_button.setFrame(0);
-			quit_button.setFrame(0);
+			mainMenu.startgame_button.setFrame(1);
+			mainMenu.options_button.setFrame(0);
+			mainMenu.credits_button.setFrame(0);
+			mainMenu.quit_button.setFrame(0);
 			if (input::enter_key == true)
 				STATE = START_GAME;
 			break;
 		case OPTIONS:
-			startgame_button.setFrame(0);
-			options_button.setFrame(1);
-			credits_button.setFrame(0);
-			quit_button.setFrame(0);
+			mainMenu.startgame_button.setFrame(0);
+			mainMenu.options_button.setFrame(1);
+			mainMenu.credits_button.setFrame(0);
+			mainMenu.quit_button.setFrame(0);
 			if (input::enter_key == true)
 				STATE = OPTIONS;
 			break;
 		case CREDITS:
-			startgame_button.setFrame(0);
-			options_button.setFrame(0);
-			credits_button.setFrame(1);
-			quit_button.setFrame(0);
+			mainMenu.startgame_button.setFrame(0);
+			mainMenu.options_button.setFrame(0);
+			mainMenu.credits_button.setFrame(1);
+			mainMenu.quit_button.setFrame(0);
 			if (input::enter_key == true)
 				STATE = CREDITS;
 			break;
 		case QUIT:
-			startgame_button.setFrame(0);
-			options_button.setFrame(0);
-			credits_button.setFrame(0);
-			quit_button.setFrame(1);
+			mainMenu.startgame_button.setFrame(0);
+			mainMenu.options_button.setFrame(0);
+			mainMenu.credits_button.setFrame(0);
+			mainMenu.quit_button.setFrame(1);
 			if (input::enter_key == true)
 				STATE = QUIT;
 			break;
 		default:
-			startgame_button.setFrame(0);
-			options_button.setFrame(0);
-			credits_button.setFrame(0);
-			quit_button.setFrame(0);
+			mainMenu.startgame_button.setFrame(0);
+			mainMenu.options_button.setFrame(0);
+			mainMenu.credits_button.setFrame(0);
+			mainMenu.quit_button.setFrame(0);
 		}
 
 		SDL_RenderClear(renderer);
@@ -160,9 +160,9 @@ void mainmenu(SDL_Renderer *renderer) {
 		SDL_RenderClear(renderer);
 		GUIRender_MainMenu(renderer);
 		SDL_RenderPresent(renderer);
-		title_image.alphaDec(15);
-		startgame_button.alphaDec(15);
-		quit_button.alphaDec(15);
+		mainMenu.title_image.alphaDec(15);
+		mainMenu.startgame_button.alphaDec(15);
+		mainMenu.quit_button.alphaDec(15);
 		bckgrd[0].alphaDec(15);
 
 		alphaCounter -= 15;

@@ -4,10 +4,10 @@
 #include "../../engine/textures.h"
 #include "../../engine/sprite.h"
 
-#ifndef title_h
-#define title_h
+#ifndef title_base_h
+#define title_base_h
 
-class title {
+class title_base {
 public:
 	void setup();
 	void render(SDL_Renderer *renderer); //renders the image at the given location

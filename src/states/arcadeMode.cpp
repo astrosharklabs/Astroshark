@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "../engine/input.h"
 #include "../engine/constants.h"
-#include "../objects/background.h"
+#include "../objects/Misc/background_base.h"
 
 void arcadeMode(SDL_Renderer *renderer) {
 	mainCamera.timer.start();

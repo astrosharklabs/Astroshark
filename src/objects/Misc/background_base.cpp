@@ -1,8 +1,8 @@
-#include "background.h"
+#include "background_base.h"
 #include "SDL.h"
-#include "../engine/textures.h"
-#include "../engine/constants.h"
-#include "../engine/sprite.h"
+#include "../../engine/textures.h"
+#include "../../engine/constants.h"
+#include "../../engine/sprite.h"
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
@@ -12,7 +12,7 @@ SDL_Point bckgrdOrigin;
 
 int bckgrdOrder[4] = { 0, 1, 2, 3 };
 
-void background::setup(int x, int y, int w, int h) {
+void background_base::setup(int x, int y, int w, int h) {
 	prop.texture = background_texture;
 
 	prop.dstrect.x = x;
@@ -29,25 +29,25 @@ void background::setup(int x, int y, int w, int h) {
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 }
 
-void background::setXY(int x, int y) {
+void background_base::setXY(int x, int y) {
 	prop.dstrect.x = x;
 	prop.dstrect.y = y;
 }
 
-void background::render(SDL_Renderer *renderer) {
+void background_base::render(SDL_Renderer *renderer) {
 	if (testCollision(prop.dstrect, mainCamera.rect) == true)
 		SDL_RenderCopyEx(renderer, background_texture, NULL, &prop.dstrect, prop.defaultOrientation, NULL, SDL_FLIP_NONE);
 }
 
-void background::orientate(int angle) {
+void background_base::orientate(int angle) {
 	prop.defaultOrientation = angle;
 }
 
-void background::alphaInc(int rate) {
+void background_base::alphaInc(int rate) {
 	alphaIncrease(prop.texture, &prop.alpha, rate);
 }
 
-void background::alphaDec(int rate) {
+void background_base::alphaDec(int rate) {
 	alphaDecrease(prop.texture, &prop.alpha, rate);
 }
 

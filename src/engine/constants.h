@@ -3,8 +3,8 @@
 #define constants_h
 
 #include "SDL.h"
-#include "../objects/camera.h"
-#include "../objects/background.h"
+#include "../objects/Misc/camera_base.h"
+#include "../objects/Misc/background_base.h"
 
 enum screen_state { MAIN_MENU = 1, START_GAME, OPTIONS, CREDITS, QUIT, PAUSE_MENU };
 
@@ -15,6 +15,6 @@ extern const char *windowTitle;
 
 extern int STATE;
 
-extern camera mainCamera;
-extern background bckgrd[4];
+extern camera_base mainCamera;
+extern background_base bckgrd[4];
 #endif

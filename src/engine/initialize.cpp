@@ -4,7 +4,7 @@
 #include "SDL_image.h"
 #include "textures.h"
 #include "../states/splashscreen.h"
-#include "../objects/GUI/guiobjects.h"
+#include "../objects/GUI.h"
 #include "constants.h"
 #include "statemanager.h"
 
@@ -48,7 +48,7 @@ void initialize(int *debug) {
 
 void loadTextures() {
 	loadTexturefromIMG(renderer, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
-	loadTexturefromIMG(renderer, &buttons_texture, "resources/gfx/buttons/buttons.png");
+	loadTexturefromIMG(renderer, &buttons_texture, "resources/gfx/GUI/buttons.png");
 	loadTexturefromIMG(renderer, &background_texture, "resources/gfx/background_1920x1920.png");
 	loadTexturefromIMG(renderer, &playerShip_texture, "resources/gfx/sprites/playerShip_spritesheet_320x480.png");
 }
@@ -58,6 +58,7 @@ void close() {
 	SDL_DestroyTexture(astroshark_titleTexture);
 	SDL_DestroyTexture(buttons_texture);
 	SDL_DestroyTexture(background_texture);
+	SDL_DestroyTexture(playerShip_texture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gameWindow);
 	IMG_Quit();

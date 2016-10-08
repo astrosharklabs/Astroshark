@@ -1,22 +1,11 @@
-#include <stdio.h>
-#include "SDL.h"
-#include "title.h"
-#include "buttons.h"
+#include <SDL.h>
+#include "mainmenu_class.h"
+#include "button_base.h"
+#include "title_base.h"
+#include "../Misc/background_base.h"
 #include "../../engine/constants.h"
-#include "../../engine/timer.h"
 
-timer GUIkeydown_timer;
-
-title title_image;
-button startgame_button;
-button options_button;
-button credits_button;
-button quit_button;
-
-void GUILoad() {
-
-	GUIkeydown_timer.setup();
-
+void mainMenu_class::initialize() {
 	title_image.setup();
 
 	startgame_button.setup(290, 325, 700, 50);
@@ -44,7 +33,7 @@ void GUILoad() {
 	quit_button.setCollision(0, 475, 1280, 50);
 }
 
-void GUIRender_MainMenu(SDL_Renderer *renderer) {
+void mainMenu_class::render(SDL_Renderer *renderer) {
 	bckgrdRender(renderer);
 	title_image.render(renderer);
 	startgame_button.render(renderer);
