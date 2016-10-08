@@ -14,4 +14,6 @@ extern SDL_Texture *astroshark_titleTexture;
 extern SDL_Texture *buttons_texture;
 
 extern SDL_Texture *background_texture;
+
+extern SDL_Texture *playerShip_texture;
 #endif

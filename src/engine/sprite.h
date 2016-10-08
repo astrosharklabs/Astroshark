@@ -55,4 +55,9 @@ void alphaDecrease(SDL_Texture *, int *, int);
 void setRect(int, int, int, int, SDL_Rect *);
 
 bool testCollision(SDL_Rect, SDL_Rect);
+
+namespace astroshark {
+	enum direction {NORTH = 5, EAST, SOUTH, WEST};
+	void calculateMovement(int *, int *, int, int);
+}
 #endif

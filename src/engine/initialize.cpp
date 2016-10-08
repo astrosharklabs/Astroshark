@@ -50,6 +50,7 @@ void loadTextures() {
 	loadTexturefromIMG(renderer, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
 	loadTexturefromIMG(renderer, &buttons_texture, "resources/gfx/buttons/buttons.png");
 	loadTexturefromIMG(renderer, &background_texture, "resources/gfx/background_1920x1920.png");
+	loadTexturefromIMG(renderer, &playerShip_texture, "resources/gfx/sprites/playerShip_spritesheet_320x480.png");
 }
 
 void close() {
