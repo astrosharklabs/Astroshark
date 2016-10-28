@@ -54,6 +54,8 @@ void alphaDecrease(SDL_Texture *, int *, int);
 
 void setRect(int, int, int, int, SDL_Rect *);
 
+void copyRect(SDL_Rect *, SDL_Rect *);
+
 bool testCollision(SDL_Rect, SDL_Rect);
 
 namespace astroshark {

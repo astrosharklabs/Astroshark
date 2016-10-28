@@ -3,17 +3,18 @@
 #include "../../engine/sprite.h"
 #include "../../engine/textures.h"
 
-#ifndef playerShip_base_h
-#define playerShip_base_h
+#ifndef ship_base_h
+#define ship_base_h
 
-class playerShip_base {
+class ship_base {
 public:
-	void setup(int, int, int, int);
-	void render(SDL_Renderer *);
+	void setup(int, int, int, int, SDL_Texture *);
+	void render(SDL_Renderer *, SDL_Rect *);
 	void setXY(int, int);
 	void alphaInc(int);
 	void alphaDec(int);
-	void defFrame(int, int, int, int, int);
+	void setAlpha(int);
+	void defFrame(int, int, int, int, SDL_Rect *);
 	void setFrame(int);
 	void setCollision(int, int, int, int);
 
@@ -25,9 +26,6 @@ public:
 private:
 	defaultProp prop;
 	basicMovement movement;
-	animation defaultCycle;
-	animation transitCycle;
-	animation moveCycle[4];
 	collision collision;
 	int lives;
 	bool collide;

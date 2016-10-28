@@ -5,6 +5,7 @@
 #include "textures.h"
 #include "../states/splashscreen.h"
 #include "../objects/GUI.h"
+#include "../objects/GameObjects.h"
 #include "constants.h"
 #include "statemanager.h"
 
@@ -29,6 +30,9 @@ void initialize(int *debug) {
 	loadTextures();
 	bckgrdLoad();
 	GUILoad();
+
+	GameObjectsLoad_ArcadeMode();
+
 	mainCamera.setup(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	//SDL_Delay(3000);
 	//SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
@@ -50,7 +54,7 @@ void loadTextures() {
 	loadTexturefromIMG(renderer, &astroshark_titleTexture, "resources/gfx/astroshark_title_740x95.png");
 	loadTexturefromIMG(renderer, &buttons_texture, "resources/gfx/GUI/buttons.png");
 	loadTexturefromIMG(renderer, &background_texture, "resources/gfx/background_1920x1920.png");
-	loadTexturefromIMG(renderer, &playerShip_texture, "resources/gfx/sprites/playerShip_spritesheet_320x480.png");
+	loadTexturefromIMG(renderer, &amadeusShip_texture, "resources/gfx/sprites/playerShip_spritesheet_320x480.png");
 }
 
 void close() {
@@ -58,7 +62,7 @@ void close() {
 	SDL_DestroyTexture(astroshark_titleTexture);
 	SDL_DestroyTexture(buttons_texture);
 	SDL_DestroyTexture(background_texture);
-	SDL_DestroyTexture(playerShip_texture);
+	SDL_DestroyTexture(amadeusShip_texture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(gameWindow);
 	IMG_Quit();

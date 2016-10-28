@@ -4,8 +4,8 @@
 #include "../engine/timer.h"
 #include "GUI/mainmenu_class.h"
 
-#ifndef guiobjects_h
-#define guiobjects_h
+#ifndef GUI_h
+#define GUI_h
 
 extern timer GUIkeydown_timer;
 

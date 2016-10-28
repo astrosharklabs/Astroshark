@@ -12,4 +12,4 @@ SDL_Texture *splash_screenTexture = NULL;
 SDL_Texture *astroshark_titleTexture = NULL;
 SDL_Texture *buttons_texture = NULL;
 SDL_Texture *background_texture = NULL;
-SDL_Texture *playerShip_texture = NULL;
+SDL_Texture *amadeusShip_texture = NULL;

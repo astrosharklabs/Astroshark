@@ -34,6 +34,13 @@ void setRect(int x, int y, int w, int h, SDL_Rect *rect) {
 	rect->h = h;
 }
 
+void copyRect(SDL_Rect *oldRect, SDL_Rect *newRect) {
+	newRect->x = oldRect->x;
+	newRect->y = oldRect->y;
+	newRect->w = oldRect->w;
+	newRect->h = oldRect->h;
+}
+
 bool testCollision(SDL_Rect a, SDL_Rect b) {
 	int leftA, rightA, topA, bottomA;
 	int leftB, rightB, topB, bottomB;
