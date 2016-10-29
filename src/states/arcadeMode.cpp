@@ -35,13 +35,13 @@ void arcadeMode(SDL_Renderer *renderer) {
 			amadeus.queueRequest(MOVE_FORWARD);
 		}
 		if (input::s_key == true) {
-			amadeus.queueRequest(MOVE_BACKWARD);
+			//amadeus.queueRequest(MOVE_BACKWARD);
 		}
-		if (input::a_key == true) {
-			amadeus.queueRequest(STRAFE_LEFT);
+		if (input::a_key == true && input::left_key == false) {
+			amadeus.queueRequest(ROTATE_LEFT);
 		}
-		if (input::d_key == true) {
-			amadeus.queueRequest(STRAFE_RIGHT);
+		if (input::d_key == true && input::right_key ==false) {
+			amadeus.queueRequest(ROTATE_RIGHT);
 		}
 		if (input::left_key == true) {
 			amadeus.queueRequest(ROTATE_LEFT);
