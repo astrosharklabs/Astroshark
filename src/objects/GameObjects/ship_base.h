@@ -11,6 +11,7 @@ public:
 	void setup(int, int, int, int, SDL_Texture *);
 	void render(SDL_Renderer *, SDL_Rect *);
 	void setXY(int, int);
+	void center();
 	void alphaInc(int);
 	void alphaDec(int);
 	void setAlpha(int);
@@ -18,16 +19,24 @@ public:
 	void setFrame(int);
 	void setCollision(int, int, int, int);
 
-	void setSpeed(int);
-	void move();
+	void setSpeed(int speed);
+	void move(int deltaX, int deltaY);
+	void rotate(int angle);
 
+	void queueMoveForward();
+	void queueMoveBackward();
+	void queueStrafeLeft();
+	void queueStrafeRight();
+	void queueRotateLeft();
+	void queueRotateRight();
+
+	void getXY();
 	bool isCollide();
-	int livesRemaining();
+	int lives;
+	basicMovement movement;
 private:
 	defaultProp prop;
-	basicMovement movement;
 	collision collision;
-	int lives;
 	bool collide;
 	bool invincible;
 };

@@ -30,6 +30,30 @@ void arcadeMode(SDL_Renderer *renderer) {
 
 	while (STATE == START_GAME) {
 		checkInput();
+
+		if (input::w_key == true) {
+			amadeus.queueRequest(MOVE_FORWARD);
+		}
+		if (input::s_key == true) {
+			amadeus.queueRequest(MOVE_BACKWARD);
+		}
+		if (input::a_key == true) {
+			amadeus.queueRequest(STRAFE_LEFT);
+		}
+		if (input::d_key == true) {
+			amadeus.queueRequest(STRAFE_RIGHT);
+		}
+		if (input::left_key == true) {
+			amadeus.queueRequest(ROTATE_LEFT);
+		}
+		if (input::right_key == true) {
+			amadeus.queueRequest(ROTATE_RIGHT);
+		}
+
+		mainCamera.move(amadeus.ship.movement.deltaX, amadeus.ship.movement.deltaY);
+
+		amadeus.update();
+
 		SDL_RenderClear(renderer);
 		//Render things here
 		bckgrdRender(renderer);

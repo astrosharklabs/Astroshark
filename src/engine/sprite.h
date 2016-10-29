@@ -22,6 +22,8 @@ typedef struct defaultProp {
 	int alpha;
 	int defaultOrientation;
 	int frame;
+	int angle;
+	SDL_Point origin;
 	SDL_Rect dstrect;
 	SDL_Rect srcrect;
 	SDL_Texture *texture;
@@ -30,8 +32,9 @@ typedef struct defaultProp {
 typedef struct basicMovement {
 	int deltaX;
 	int deltaY;
-	int speed;
-	int rotate;
+	int deltaAngle;
+	int movementSpeed;
+	int rotateSpeed;
 } basicMovement;
 
 typedef struct animation {
@@ -54,12 +57,14 @@ void alphaDecrease(SDL_Texture *, int *, int);
 
 void setRect(int, int, int, int, SDL_Rect *);
 
+void setRectXY(int x, int y, SDL_Rect *rect);
+
 void copyRect(SDL_Rect *, SDL_Rect *);
 
-bool testCollision(SDL_Rect, SDL_Rect);
+bool testCollision(SDL_Rect a, SDL_Rect b);
 
 namespace astroshark {
 	enum direction {NORTH = 5, EAST, SOUTH, WEST};
-	void calculateMovement(int *, int *, int, int);
+	void calculateMovement(int *deltaX, int *deltaY, int angle, int speed);
 }
 #endif

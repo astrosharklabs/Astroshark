@@ -34,6 +34,11 @@ void setRect(int x, int y, int w, int h, SDL_Rect *rect) {
 	rect->h = h;
 }
 
+void setRectXY(int x, int y, SDL_Rect *rect) {
+	rect->x = x;
+	rect->y = y;
+}
+
 void copyRect(SDL_Rect *oldRect, SDL_Rect *newRect) {
 	newRect->x = oldRect->x;
 	newRect->y = oldRect->y;
