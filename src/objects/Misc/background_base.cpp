@@ -35,7 +35,9 @@ void background_base::setXY(int x, int y) {
 }
 
 void background_base::render(SDL_Renderer *renderer) {
-	if (testCollision(prop.dstrect, mainCamera.rect) == true)
+	/*SDL_Rect temp; //Optimization needs further testing
+	setRect(prop.dstrect.x + mainCamera.rect.x, prop.dstrect.y + mainCamera.rect.y, prop.dstrect.w, prop.dstrect.h, &temp);
+	if (testCollision(temp, mainCamera.rect) == true)*/
 		SDL_RenderCopyEx(renderer, background_texture, NULL, &prop.dstrect, prop.defaultOrientation, NULL, SDL_FLIP_NONE);
 }
 

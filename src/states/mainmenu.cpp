@@ -27,6 +27,15 @@ void mainmenu(SDL_Renderer *renderer) {
 
 	int current_selection = -1;
 
+	/*Debug*/
+	/*SDL_Rect debug;
+	setRect(0, 0, 10, 10, &debug);
+	SDL_Rect debug2;
+	setRect(0, 325, 1280, 50, &debug2);
+	int mouseX;
+	int mouseY;*/
+	/*End Debug*/
+
 	while (STATE == MAIN_MENU) {
 		checkInput();
 		if (mainCamera.timer.getCurrentSeconds() >= (1.0 / 35.0)) { //Regulates camera movement to 1/35th of a second
@@ -34,6 +43,19 @@ void mainmenu(SDL_Renderer *renderer) {
 			mainCamera.timer.start();
 		}
 
+
+		/*Debug*/
+		/*SDL_GetMouseState(&mouseX, &mouseY);
+		debug.x = mouseX;
+		debug.y = mouseY;
+		printf("%d, %d\n", debug.x, debug.y);
+
+		if (testCollision(debug, debug2) == true) {
+			current_selection = START_GAME;
+			if (input::left_mouse == true)
+				STATE = START_GAME;
+		}*/
+		/*End Debug*/
 		if (mainMenu.startgame_button.mouseOver() == true) {
 			current_selection = START_GAME;
 			if (input::left_mouse == true)

@@ -13,6 +13,8 @@ void amadeusShip::initialize() {
 //	ship.move(0, 100);
 	ship.rotate(90);
 	copyRect(&defaultCycle.srcrect, &currentSRCRECT.srcrect);
+
+	setRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, &ship.movement.domain);
 }
 
 void amadeusShip::queueRequest(int type) {
@@ -47,8 +49,8 @@ void amadeusShip::render(SDL_Renderer *renderer) {
 }
 
 void amadeusShip::update() {
-	ship.move(ship.movement.deltaX, ship.movement.deltaY);
 	ship.rotate(ship.movement.deltaAngle);
+	ship.move(ship.movement.deltaX, ship.movement.deltaY);
 
 	ship.movement.deltaX = 0;
 	ship.movement.deltaY = 0;

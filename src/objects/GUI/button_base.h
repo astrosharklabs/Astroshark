@@ -18,8 +18,9 @@ public:
 	void setFrame(int);
 	void setCollision(int, int, int, int);
 	bool mouseOver();
-private:
 	defaultProp prop;
+private:
+
 	animation frame[2];
 	collision collision;
 };

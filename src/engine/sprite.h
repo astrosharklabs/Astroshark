@@ -35,6 +35,8 @@ typedef struct basicMovement {
 	int deltaAngle;
 	int movementSpeed;
 	int rotateSpeed;
+	SDL_Rect domain;
+	SDL_Rect Gdstrect;
 } basicMovement;
 
 typedef struct animation {
@@ -62,6 +64,8 @@ void setRectXY(int x, int y, SDL_Rect *rect);
 void copyRect(SDL_Rect *, SDL_Rect *);
 
 bool testCollision(SDL_Rect a, SDL_Rect b);
+
+void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain);
 
 namespace astroshark {
 	enum direction {NORTH = 5, EAST, SOUTH, WEST};

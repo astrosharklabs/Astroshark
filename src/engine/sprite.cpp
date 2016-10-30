@@ -6,6 +6,8 @@
 
 #define PI 3.14159265
 
+enum output {TOP, RIGHT, CORNER};
+
 void loadPNGImageToTexture(SDL_Renderer *renderer, int *w, int *h, SDL_Texture **spriteTexture, const char *file) {
 	SDL_Surface *tempSurface = IMG_Load(file);
 	*spriteTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
@@ -60,16 +62,112 @@ bool testCollision(SDL_Rect a, SDL_Rect b) {
 	topB = b.y;
 	bottomB = b.y + b.h;
 
-	if (leftA <= rightB)
-		return true;
-	if (leftB <= rightA)
-		return true;
-	if (topA <= bottomB)
-		return true;
-	if (topB <= bottomA)
-		return true;
+	if (leftA >= rightB)
+		return false;
+	if (leftB >= rightA)
+		return false;
+	if (topA >= bottomB)
+		return false;
+	if (topB >= bottomA)
+		return false;
 
-	return false;
+	return true;
+}
+
+void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain) {
+	/*int deltaX;
+	int deltaY;
+
+	int baseTan;
+	baseTan = atan(720 / (domain.w - rect->x)) * 180 / PI;
+
+	int quadrant = 0;
+	float sinT;
+	float cosT;
+
+	int result;
+
+	angle -= 180;
+
+	/*Checks to see if rotation is greater or less than 360*/
+	/*if (angle >= 360)
+		angle -= 360;
+	if (angle < 0)
+		angle += 360;
+
+	/*Sets proper Quadrant*/
+	/*if (angle < 90 && angle > 0) {
+		quadrant = 1;
+	}
+	if (angle < 180 && angle > 90) {
+		quadrant = 2;
+		angle -= 90;
+	}
+	if (angle < 270 && angle > 180) {
+		quadrant = 3;
+		angle -= 180;
+	}
+	if (angle <= 359 && angle > 270) {
+		quadrant = 4;
+		angle -= 270;
+	}
+	if (angle == 0)
+		quadrant = astroshark::EAST;
+	if (angle == 90)
+		quadrant = astroshark::NORTH;
+	if (angle == 180)
+		quadrant = astroshark::WEST;
+	if (angle == 270)
+		quadrant = astroshark::SOUTH;
+
+	if (angle < 90 && angle > 0 || angle < 270 && angle > 180) {
+		if (baseTan < angle)
+			result = TOP;
+		if (baseTan > angle)
+			result = RIGHT;
+		if (baseTan == angle)
+			result = CORNER;
+	}*/
+
+	int deltaX;
+	int deltaY;
+
+	angle -= 180;
+
+	int w;
+	int h;
+
+	w = domain.w - (domain.w - rect->x);
+	h = domain.h - (domain.h - rect->y);
+
+	int xInc;
+	int yInc;
+	bool stop = false;
+
+	astroshark::calculateMovement(&deltaX, &deltaY, angle, 5);
+
+	xInc = deltaX;
+	yInc = deltaY;
+
+	while (stop == false) {
+		if (deltaX + rect->x >= w) {
+			stop == true;
+			break;
+		}
+		if (deltaY + rect->y >= h) {
+			stop == true;
+			break;
+		}
+
+		deltaX += xInc;
+		deltaY += yInc;
+	}
+
+	deltaX -= xInc;
+	deltaY -= yInc;
+
+	rect->x += deltaX;
+	rect->y += deltaY;
 }
 
 void astroshark::calculateMovement(int *deltaX, int *deltaY, int angle, int speed) {

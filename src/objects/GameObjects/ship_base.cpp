@@ -17,6 +17,11 @@ void ship_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *textu
 	prop.dstrect.w = dstW;
 	prop.dstrect.h = dstH;
 
+	movement.Gdstrect.x = dstX;
+	movement.Gdstrect.y = dstY;
+	movement.Gdstrect.w = dstW;
+	movement.Gdstrect.h = dstH;
+
 	collision.hitbox.x = dstX;
 	collision.hitbox.y = dstY;
 	collision.hitbox.w = dstW;
@@ -29,12 +34,12 @@ void ship_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *textu
 
 	prop.origin.x = prop.dstrect.w / 2;
 	prop.origin.y = prop.dstrect.h / 2;
-	movement.movementSpeed = 5;
+	movement.movementSpeed = 10;
 	movement.rotateSpeed = 5;
 }
 
 void ship_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
-	if (testCollision(prop.dstrect, mainCamera.rect) == true)
+	if (testCollision(movement.Gdstrect, mainCamera.rect) == true)
 		SDL_RenderCopyEx(renderer, prop.texture, srcrect, &prop.dstrect, -1 * prop.angle + 90, &prop.origin, SDL_FLIP_NONE);
 	//printf("x: %d y: %d w: %d h: %d\n", srcrect->x, srcrect->y, srcrect->w, srcrect->h);
 	//printf("x: %d y: %d w: %d h: %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
@@ -76,6 +81,16 @@ void ship_base::setCollision(int x, int y, int w, int h) {
 void ship_base::move(int deltaX, int deltaY) {
 	prop.dstrect.x += deltaX;
 	prop.dstrect.y += deltaY;
+
+	movement.Gdstrect.x = prop.dstrect.x + mainCamera.rect.x;
+	movement.Gdstrect.y = prop.dstrect.y + mainCamera.rect.y;
+
+	printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
+	if (testCollision(movement.Gdstrect, mainCamera.rect) == false) {
+		//domainRestrict(prop.angle, &movement.Gdstrect, movement.domain);
+		//printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
+		//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
+	}
 }
 
 void ship_base::rotate(int deltaAngle) {
