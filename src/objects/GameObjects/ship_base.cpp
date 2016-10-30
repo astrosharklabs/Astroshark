@@ -79,17 +79,17 @@ void ship_base::setCollision(int x, int y, int w, int h) {
 }
 
 void ship_base::move(int deltaX, int deltaY) {
-	prop.dstrect.x += deltaX;
-	prop.dstrect.y += deltaY;
+		prop.dstrect.x += deltaX;
+		prop.dstrect.y += deltaY;
 
-	movement.Gdstrect.x = prop.dstrect.x + mainCamera.rect.x;
-	movement.Gdstrect.y = prop.dstrect.y + mainCamera.rect.y;
+		movement.Gdstrect.x = prop.dstrect.x + mainCamera.rect.x;
+		movement.Gdstrect.y = prop.dstrect.y + mainCamera.rect.y;
 
-	printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
-	if (testCollision(movement.Gdstrect, mainCamera.rect) == false) {
-		//domainRestrict(prop.angle, &movement.Gdstrect, movement.domain);
-		//printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
 		//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
+	if (testCollision(movement.Gdstrect, mainCamera.rect) == false) {
+		//domainRestrict(deltaX, deltaY, prop.angle, &prop.dstrect, mainCamera.rect);
+		//printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
+		printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
 	}
 }
 
@@ -103,19 +103,19 @@ void ship_base::rotate(int deltaAngle) {
 }
 
 void ship_base::queueMoveForward() {
-	astroshark::calculateMovement(&movement.deltaX, &movement.deltaY, prop.angle, movement.movementSpeed);
+	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle, movement.movementSpeed);
 }
 
 void ship_base::queueMoveBackward() {
-	astroshark::calculateMovement(&movement.deltaX, &movement.deltaY, prop.angle - 180, movement.movementSpeed);
+	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle - 180, movement.movementSpeed);
 }
 
 void ship_base::queueStrafeLeft() {
-	astroshark::calculateMovement(&movement.deltaX, &movement.deltaY, prop.angle + 90, movement.movementSpeed);
+	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle + 90, movement.movementSpeed);
 }
 
 void ship_base::queueStrafeRight() {
-	astroshark::calculateMovement(&movement.deltaX, &movement.deltaY, prop.angle - 90, movement.movementSpeed);
+	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle - 90, movement.movementSpeed);
 }
 
 void ship_base::queueRotateLeft() {

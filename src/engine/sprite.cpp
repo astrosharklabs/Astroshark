@@ -8,6 +8,8 @@
 
 enum output {TOP, RIGHT, CORNER};
 
+enum direction { NORTH = 1, EAST, SOUTH, WEST };
+
 void loadPNGImageToTexture(SDL_Renderer *renderer, int *w, int *h, SDL_Texture **spriteTexture, const char *file) {
 	SDL_Surface *tempSurface = IMG_Load(file);
 	*spriteTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
@@ -74,7 +76,7 @@ bool testCollision(SDL_Rect a, SDL_Rect b) {
 	return true;
 }
 
-void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain) {
+void domainRestrict(int deltaX, int deltaY, int angle, SDL_Rect *rect, SDL_Rect domain) {
 	/*int deltaX;
 	int deltaY;
 
@@ -129,10 +131,11 @@ void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain) {
 			result = CORNER;
 	}*/
 
-	int deltaX;
-	int deltaY;
-
-	angle -= 180;
+	angle += 180;
+	if (angle >= 360)
+		angle -= 360;
+	if (angle < 0)
+		angle += 360;
 
 	int w;
 	int h;
@@ -140,17 +143,18 @@ void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain) {
 	w = domain.w - (domain.w - rect->x);
 	h = domain.h - (domain.h - rect->y);
 
+	//printf("%d, %d\n", w, h);
+	//printf("%d\n", angle);
+
 	int xInc;
 	int yInc;
 	bool stop = false;
 
-	astroshark::calculateMovement(&deltaX, &deltaY, angle, 5);
-
-	xInc = deltaX;
+	xInc = -1 * deltaX;
 	yInc = deltaY;
 
-	while (stop == false) {
-		if (deltaX + rect->x >= w) {
+	/*while (stop == false) {
+		if (rect->x + deltaX >= w) {
 			stop == true;
 			break;
 		}
@@ -164,13 +168,13 @@ void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain) {
 	}
 
 	deltaX -= xInc;
-	deltaY -= yInc;
+	deltaY -= yInc;*/
 
-	rect->x += deltaX;
-	rect->y += deltaY;
+	rect->x += deltaX * 20;
+	rect->y += deltaY * 20;
 }
 
-void astroshark::calculateMovement(int *deltaX, int *deltaY, int angle, int speed) {
+void rotationalMovement(int *deltaX, int *deltaY, int angle, int speed) {
 	int quadrant = 0;
 	float sinT;
 	float cosT;
@@ -181,68 +185,37 @@ void astroshark::calculateMovement(int *deltaX, int *deltaY, int angle, int spee
 	if (angle < 0)
 		angle += 360;
 	
-	/*Sets proper Quadrant*/
-	if (angle < 90 && angle > 0) {
-		quadrant = 1;
-	}
-	if (angle < 180 && angle > 90) {
-		quadrant = 2;
-		angle -= 90;
-	}
-	if (angle < 270 && angle > 180) {
-		quadrant = 3;
-		angle -= 180;
-	}
-	if (angle <= 359 && angle > 270) {
-		quadrant = 4;
-		angle -= 270;
-	}
 	if (angle == 0)
-		quadrant = astroshark::EAST;
+		quadrant = EAST;
 	if (angle == 90)
-		quadrant = astroshark::NORTH;
+		quadrant = NORTH;
 	if (angle == 180)
-		quadrant = astroshark::WEST;
+		quadrant = WEST;
 	if (angle == 270)
-		quadrant = astroshark::SOUTH;
+		quadrant = SOUTH;
 
-	sinT = sin(angle * PI / 180) * speed;
+	sinT = -1 * (sin(angle * PI / 180) * speed);
 	cosT = cos(angle * PI / 180) * speed;
 
-	if (deltaX != NULL && deltaY != NULL) {
-		switch (quadrant) {
-		case 1:
-			*deltaX = cosT;
-			*deltaY = -1 * sinT;
-			break;
-		case 2:
-			*deltaX = -1 * sinT;
-			*deltaY = -1 * cosT;
-			break;
-		case 3:
-			*deltaX = -1 * cosT;
-			*deltaY = sinT;
-			break;
-		case 4:
-			*deltaX = sinT;
-			*deltaY = cosT;
-			break;
-		case astroshark::NORTH:
-			*deltaX = 0;
-			*deltaY = -1 * sinT + 1;
-			break;
-		case astroshark::EAST:
-			*deltaX = cosT - 1;
-			*deltaY = 0;
-			break;
-		case astroshark::SOUTH:
-			*deltaX = 0;
-			*deltaY = -1 * sinT - 1;
-			break;
-		case astroshark::WEST:
-			*deltaX = cosT + 1;
-			*deltaY = 0;
-			break;
-		}
+	*deltaX = cosT;
+	*deltaY = sinT;
+
+	switch (quadrant) {
+	case NORTH:
+		*deltaX = cosT;
+		*deltaY = sinT + 1;
+		break;
+	case EAST:
+		*deltaX = cosT - 1;
+		*deltaY = sinT;
+		break;
+	case SOUTH:
+		*deltaX = cosT;
+		*deltaY = sinT - 1;
+		break;
+	case WEST:
+		*deltaX = cosT + 1;
+		*deltaY = sinT;
+		break;
 	}
 }

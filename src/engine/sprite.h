@@ -4,7 +4,7 @@
 #define sprite_h
 
 #include "SDL.h"
-enum orientation {NORTH, EAST, SOUTH, WEST};
+//enum orientation {NORTH, EAST, SOUTH, WEST};
 /*TEMPORARY*/
 typedef struct sprite {
 	int deltaX;
@@ -65,10 +65,7 @@ void copyRect(SDL_Rect *, SDL_Rect *);
 
 bool testCollision(SDL_Rect a, SDL_Rect b);
 
-void domainRestrict(int angle, SDL_Rect *rect, SDL_Rect domain);
+void domainRestrict(int deltaX, int deltaY, int angle, SDL_Rect *rect, SDL_Rect domain);
 
-namespace astroshark {
-	enum direction {NORTH = 5, EAST, SOUTH, WEST};
-	void calculateMovement(int *deltaX, int *deltaY, int angle, int speed);
-}
+void rotationalMovement(int *deltaX, int *deltaY, int angle, int speed);
 #endif
