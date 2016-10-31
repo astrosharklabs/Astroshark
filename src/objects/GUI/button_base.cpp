@@ -26,6 +26,7 @@ void button_base::setup(int dstX, int dstY, int dstW, int dstH) {
 
 void button_base::render(SDL_Renderer *renderer) {
 	SDL_RenderCopy(renderer, prop.texture, &frame[prop.frame].srcrect, &prop.dstrect);
+	setFrame(buttonAnimation::DEFAULT);
 }
 
 void button_base::fadeIn(SDL_Renderer *renderer, int rate) {
@@ -76,4 +77,8 @@ bool button_base::mouseOver() {
 		return false;
 
 	return true;
+}
+
+void button_base::highlighted() {
+	setFrame(buttonAnimation::HIGHLIGHTED);
 }

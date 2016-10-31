@@ -6,6 +6,10 @@
 #ifndef buttons_base_h
 #define button_base_h
 
+namespace buttonAnimation {
+	enum frameNum {DEFAULT, HIGHLIGHTED};
+}
+
 class button_base {
 public:
 	void setup(int, int, int, int);
@@ -18,6 +22,7 @@ public:
 	void setFrame(int);
 	void setCollision(int, int, int, int);
 	bool mouseOver();
+	void highlighted();
 	defaultProp prop;
 private:
 

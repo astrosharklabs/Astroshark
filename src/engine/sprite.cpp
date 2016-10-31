@@ -175,7 +175,7 @@ void domainRestrict(int deltaX, int deltaY, int angle, SDL_Rect *rect, SDL_Rect 
 }
 
 void rotationalMovement(int *deltaX, int *deltaY, int angle, int speed) {
-	int quadrant = 0;
+	int facing = 0;
 	float sinT;
 	float cosT;
 
@@ -186,13 +186,13 @@ void rotationalMovement(int *deltaX, int *deltaY, int angle, int speed) {
 		angle += 360;
 	
 	if (angle == 0)
-		quadrant = EAST;
+		facing = EAST;
 	if (angle == 90)
-		quadrant = NORTH;
+		facing = NORTH;
 	if (angle == 180)
-		quadrant = WEST;
+		facing = WEST;
 	if (angle == 270)
-		quadrant = SOUTH;
+		facing = SOUTH;
 
 	sinT = -1 * (sin(angle * PI / 180) * speed);
 	cosT = cos(angle * PI / 180) * speed;
@@ -200,7 +200,7 @@ void rotationalMovement(int *deltaX, int *deltaY, int angle, int speed) {
 	*deltaX = cosT;
 	*deltaY = sinT;
 
-	switch (quadrant) {
+	switch (facing) {
 	case NORTH:
 		*deltaX = cosT;
 		*deltaY = sinT + 1;

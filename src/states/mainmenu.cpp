@@ -130,42 +130,27 @@ void mainmenu(SDL_Renderer *renderer) {
 
 		switch(current_selection) {
 		case START_GAME:
-			mainMenu.startgame_button.setFrame(1);
-			mainMenu.options_button.setFrame(0);
-			mainMenu.credits_button.setFrame(0);
-			mainMenu.quit_button.setFrame(0);
+			mainMenu.startgame_button.highlighted();
 			if (input::enter_key == true)
 				STATE = START_GAME;
 			break;
 		case OPTIONS:
-			mainMenu.startgame_button.setFrame(0);
-			mainMenu.options_button.setFrame(1);
-			mainMenu.credits_button.setFrame(0);
-			mainMenu.quit_button.setFrame(0);
+			mainMenu.options_button.highlighted();
 			if (input::enter_key == true)
 				STATE = OPTIONS;
 			break;
 		case CREDITS:
-			mainMenu.startgame_button.setFrame(0);
-			mainMenu.options_button.setFrame(0);
-			mainMenu.credits_button.setFrame(1);
-			mainMenu.quit_button.setFrame(0);
+			mainMenu.credits_button.highlighted();
 			if (input::enter_key == true)
 				STATE = CREDITS;
 			break;
 		case QUIT:
-			mainMenu.startgame_button.setFrame(0);
-			mainMenu.options_button.setFrame(0);
-			mainMenu.credits_button.setFrame(0);
-			mainMenu.quit_button.setFrame(1);
+			mainMenu.quit_button.highlighted();
 			if (input::enter_key == true)
 				STATE = QUIT;
 			break;
 		default:
-			mainMenu.startgame_button.setFrame(0);
-			mainMenu.options_button.setFrame(0);
-			mainMenu.credits_button.setFrame(0);
-			mainMenu.quit_button.setFrame(0);
+			break;
 		}
 
 		SDL_RenderClear(renderer);
