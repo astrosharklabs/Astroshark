@@ -24,7 +24,7 @@ typedef struct defaultProp {
 	int frame;
 	int angle;
 	SDL_Point origin;
-	SDL_Rect dstrect;
+	SDL_Rect dstrect; //Relative to the screen
 	SDL_Rect srcrect;
 	SDL_Texture *texture;
 } defaultProp;

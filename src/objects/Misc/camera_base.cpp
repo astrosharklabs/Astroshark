@@ -4,7 +4,7 @@
 
 void updateSprites(int deltaX, int deltaY) {
 	bckgrdMove(deltaX, deltaY);
-	amadeus.ship.move(deltaX, deltaY);
+	//amadeus.ship.move(deltaX, deltaY);
 }
 
 void camera_base::setup(int x, int y, int w, int h) {

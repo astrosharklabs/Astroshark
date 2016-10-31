@@ -50,7 +50,17 @@ void ship_base::setXY(int dstX, int dstY) {
 }
 
 void ship_base::center() {
-	setRectXY((WINDOW_WIDTH / 2) - (prop.dstrect.w / 2), (WINDOW_HEIGHT / 2) - (prop.dstrect.h / 2), &prop.dstrect);
+	movement.Gdstrect.x = mainCamera.rect.x;
+	movement.Gdstrect.y = mainCamera.rect.y;
+
+	movement.deltaX = (WINDOW_WIDTH / 2) - (movement.Gdstrect.w / 2);
+	movement.deltaY = (WINDOW_HEIGHT / 2) - (movement.Gdstrect.h / 2);
+	move(movement.deltaX, movement.deltaY);
+
+	movement.deltaX = 0;
+	movement.deltaY = 0;
+	//setRectXY((WINDOW_WIDTH / 2) - (prop.dstrect.w / 2), (WINDOW_HEIGHT / 2) - (prop.dstrect.h / 2), &prop.dstrect);
+	printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, movement.Gdstrect.h);
 }
 
 void ship_base::alphaInc(int rate) {
@@ -79,17 +89,23 @@ void ship_base::setCollision(int x, int y, int w, int h) {
 }
 
 void ship_base::move(int deltaX, int deltaY) {
-		prop.dstrect.x += deltaX;
-		prop.dstrect.y += deltaY;
+	movement.Gdstrect.x += deltaX;
+	movement.Gdstrect.y += deltaY;
 
-		movement.Gdstrect.x = prop.dstrect.x + mainCamera.rect.x;
-		movement.Gdstrect.y = prop.dstrect.y + mainCamera.rect.y;
+	prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x;
+	prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y;
 
-		//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
+	/*prop.dstrect.x += deltaX;
+	prop.dstrect.y += deltaY;
+
+	movement.Gdstrect.x = prop.dstrect.x + mainCamera.rect.x;
+	movement.Gdstrect.y = prop.dstrect.y + mainCamera.rect.y;*/
+
+	//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
 	if (testCollision(movement.Gdstrect, mainCamera.rect) == false) {
 		//domainRestrict(deltaX, deltaY, prop.angle, &prop.dstrect, mainCamera.rect);
 		//printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
-		printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
+		//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
 	}
 }
 

@@ -9,7 +9,8 @@
 void arcadeMode(SDL_Renderer *renderer) {
 	mainCamera.timer.start();
 	FPS_timer.start();
-	mainCamera.setXY(0, 0);
+	amadeus.ship.center();
+	//mainCamera.setXY(0, 0);
 	int i;
 
 	/*Fade In*/
