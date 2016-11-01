@@ -27,6 +27,10 @@ void ship_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *textu
 	collision.hitbox.w = dstW;
 	collision.hitbox.h = dstH;
 
+	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
+	arcadeMode_domain.setup(0, 0, mainCamera.rect.w, mainCamera.rect.h, 0);
+	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
+
 	prop.frame = 0;
 
 	prop.alpha = 0;
@@ -46,21 +50,27 @@ void ship_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
 }
 
 void ship_base::setXY(int dstX, int dstY) {
-	setRectXY(dstX, dstY, &prop.dstrect);
+	movement.Gdstrect.x = dstX;
+	movement.Gdstrect.y = dstY;;
+
+	prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x;
+	prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y;
 }
 
 void ship_base::center() {
-	movement.Gdstrect.x = mainCamera.rect.x;
+	/*movement.Gdstrect.x = mainCamera.rect.x;
 	movement.Gdstrect.y = mainCamera.rect.y;
 
 	movement.deltaX = (WINDOW_WIDTH / 2) - (movement.Gdstrect.w / 2);
 	movement.deltaY = (WINDOW_HEIGHT / 2) - (movement.Gdstrect.h / 2);
-	move(movement.deltaX, movement.deltaY);
+	move(movement.deltaX, movement.deltaY);*/
+
+	setXY(mainCamera.rect.x + ((WINDOW_WIDTH / 2) - (movement.Gdstrect.w / 2)), mainCamera.rect.y + ((WINDOW_HEIGHT / 2) - (movement.Gdstrect.h / 2)));
 
 	movement.deltaX = 0;
 	movement.deltaY = 0;
 	//setRectXY((WINDOW_WIDTH / 2) - (prop.dstrect.w / 2), (WINDOW_HEIGHT / 2) - (prop.dstrect.h / 2), &prop.dstrect);
-	printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, movement.Gdstrect.h);
+	//printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, movement.Gdstrect.h);
 }
 
 void ship_base::alphaInc(int rate) {
@@ -88,12 +98,15 @@ void ship_base::setCollision(int x, int y, int w, int h) {
 	setRect(x, y, w, h, &collision.hitbox);
 }
 
-void ship_base::move(int deltaX, int deltaY) {
-	movement.Gdstrect.x += deltaX;
-	movement.Gdstrect.y += deltaY;
+void ship_base::move(int *deltaX, int *deltaY) {
+	if (STATE == START_GAME) {
+		arcadeMode_domain.restrictIn(prop.dstrect, deltaX, deltaY);
+		movement.Gdstrect.x += *deltaX;
+		movement.Gdstrect.y += *deltaY;
 
-	prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x;
-	prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y;
+		prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x - *deltaX;
+		prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y - *deltaY;
+	}
 
 	/*prop.dstrect.x += deltaX;
 	prop.dstrect.y += deltaY;
@@ -102,11 +115,11 @@ void ship_base::move(int deltaX, int deltaY) {
 	movement.Gdstrect.y = prop.dstrect.y + mainCamera.rect.y;*/
 
 	//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
-	if (testCollision(movement.Gdstrect, mainCamera.rect) == false) {
+	/*if (testCollision(movement.Gdstrect, mainCamera.rect) == false) {
 		//domainRestrict(deltaX, deltaY, prop.angle, &prop.dstrect, mainCamera.rect);
 		//printf("%d, %d, %d, %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
 		//printf("%d, %d, %d, %d\n", movement.Gdstrect.x, movement.Gdstrect.y, movement.Gdstrect.w, movement.Gdstrect.h);
-	}
+	}*/
 }
 
 void ship_base::rotate(int deltaAngle) {

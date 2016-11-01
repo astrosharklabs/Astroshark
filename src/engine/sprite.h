@@ -65,7 +65,5 @@ void copyRect(SDL_Rect *, SDL_Rect *);
 
 bool testCollision(SDL_Rect a, SDL_Rect b);
 
-void domainRestrict(int deltaX, int deltaY, int angle, SDL_Rect *rect, SDL_Rect domain);
-
 void rotationalMovement(int *deltaX, int *deltaY, int angle, int speed);
 #endif

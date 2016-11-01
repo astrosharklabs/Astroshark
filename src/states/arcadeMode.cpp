@@ -11,6 +11,7 @@ void arcadeMode(SDL_Renderer *renderer) {
 	FPS_timer.start();
 	amadeus.ship.center();
 	//mainCamera.setXY(0, 0);
+	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
 	int i;
 
 	/*Fade In*/
@@ -53,10 +54,10 @@ void arcadeMode(SDL_Renderer *renderer) {
 				amadeus.queueRequest(ROTATE_RIGHT);
 			}
 
+			amadeus.update();
+
 			mainCamera.move(amadeus.ship.movement.deltaX / 2, amadeus.ship.movement.deltaY / 2);
 			//printf("hhh%d, %d, %d, %d\n", mainCamera.rect.x, mainCamera.rect.y, mainCamera.rect.w, mainCamera.rect.h);
-
-			amadeus.update();
 
 			SDL_RenderClear(renderer);
 			//Render things here

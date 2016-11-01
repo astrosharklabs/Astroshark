@@ -27,13 +27,13 @@ void initialize(int *debug) {
 	splashScreen.render(renderer);
 
 	//LOAD STUFF HERE
+	mainCamera.setup(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); //MUST BE LOADED FIRST BECAUSE OTHERS DEPEND ON IT
 	loadTextures();
 	bckgrdLoad();
 	GUILoad();
 
 	GameObjectsLoad_ArcadeMode();
-
-	mainCamera.setup(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
 	//SDL_Delay(3000);
 	//SDL_SetRenderDrawColor(renderer, 100, 222, 255, 255);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //temp

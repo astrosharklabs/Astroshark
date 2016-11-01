@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "../../engine/sprite.h"
 #include "../../engine/textures.h"
+#include "../../engine/domain_base.h"
 
 #ifndef ship_base_h
 #define ship_base_h
@@ -20,7 +21,7 @@ public:
 	void setCollision(int, int, int, int);
 
 	void setSpeed(int speed);
-	void move(int deltaX, int deltaY);
+	void move(int *deltaX, int *deltaY);
 	void rotate(int angle);
 
 	void queueMoveForward();
@@ -37,6 +38,7 @@ public:
 private:
 	defaultProp prop;
 	collision collision;
+	domain_base arcadeMode_domain;
 	bool collide;
 	bool invincible;
 };
