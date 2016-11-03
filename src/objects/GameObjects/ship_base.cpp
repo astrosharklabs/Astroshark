@@ -5,6 +5,7 @@
 #include "../../engine/sprite.h"
 #include "../../engine/input.h"
 #include "../../engine/constants.h"
+#include "../../engine/timer.h"
 
 enum cycle { DEFAULT_01, TRANSIT_01, ENGINE_01, ENGINE_02, ENGINE_03, ENGINE_04 };
 enum cycleNum { DEFAULT, TRANSIT, ENGINE };
@@ -31,20 +32,24 @@ void ship_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *textu
 	arcadeMode_domain.setup(0, 0, mainCamera.rect.w, mainCamera.rect.h, 0);
 	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
 
+	keyDown_timer.setup();
+	keyDownRotate_timer.setup();
+
 	prop.frame = 0;
 
 	prop.alpha = 0;
 	SDL_SetTextureAlphaMod(prop.texture, prop.alpha);
 
-	prop.origin.x = prop.dstrect.w / 2;
-	prop.origin.y = prop.dstrect.h / 2;
+	movement.origin.x = prop.dstrect.w / 2;
+	movement.origin.y = prop.dstrect.h / 2;
 	movement.movementSpeed = 10;
 	movement.rotateSpeed = 5;
+	rotateDirection = ship_base_::NONE;
 }
 
 void ship_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
 	if (testCollision(movement.Gdstrect, mainCamera.rect) == true)
-		SDL_RenderCopyEx(renderer, prop.texture, srcrect, &prop.dstrect, -1 * prop.angle + 90, &prop.origin, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(renderer, prop.texture, srcrect, &prop.dstrect, -1 * prop.angle + 90, &movement.origin, SDL_FLIP_NONE);
 	//printf("x: %d y: %d w: %d h: %d\n", srcrect->x, srcrect->y, srcrect->w, srcrect->h);
 	//printf("x: %d y: %d w: %d h: %d\n", prop.dstrect.x, prop.dstrect.y, prop.dstrect.w, prop.dstrect.h);
 }
@@ -106,6 +111,9 @@ void ship_base::move(int *deltaX, int *deltaY) {
 
 		prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x - *deltaX;
 		prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y - *deltaY;
+
+		mainCamera.deltaX = movement.deltaX / 2;
+		mainCamera.deltaY = movement.deltaY / 2;
 	}
 
 	/*prop.dstrect.x += deltaX;
@@ -133,6 +141,7 @@ void ship_base::rotate(int deltaAngle) {
 
 void ship_base::queueMoveForward() {
 	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle, movement.movementSpeed);
+	keyDown_timer.start();
 }
 
 void ship_base::queueMoveBackward() {
@@ -149,8 +158,16 @@ void ship_base::queueStrafeRight() {
 
 void ship_base::queueRotateLeft() {
 	movement.deltaAngle += movement.rotateSpeed;
+	keyDownRotate_timer.start();
+	rotateDirection = ship_base_::LEFT;
 }
 
 void ship_base::queueRotateRight() {
 	movement.deltaAngle -= movement.rotateSpeed;
+	keyDownRotate_timer.start();
+	rotateDirection = ship_base_::RIGHT;
+}
+
+int ship_base::getH() {
+	return prop.dstrect.h;
 }

@@ -23,7 +23,6 @@ typedef struct defaultProp {
 	int defaultOrientation;
 	int frame;
 	int angle;
-	SDL_Point origin;
 	SDL_Rect dstrect; //Relative to the screen
 	SDL_Rect srcrect;
 	SDL_Texture *texture;
@@ -35,6 +34,7 @@ typedef struct basicMovement {
 	int deltaAngle;
 	int movementSpeed;
 	int rotateSpeed;
+	SDL_Point origin;
 	SDL_Rect domain;
 	SDL_Rect Gdstrect;
 } basicMovement;
@@ -61,7 +61,8 @@ void setRect(int, int, int, int, SDL_Rect *);
 
 void setRectXY(int x, int y, SDL_Rect *rect);
 
-void copyRect(SDL_Rect *, SDL_Rect *);
+/*Copies constRect into newRect*/
+void copyRect(const SDL_Rect constRect, SDL_Rect *newRect);
 
 bool testCollision(SDL_Rect a, SDL_Rect b);
 

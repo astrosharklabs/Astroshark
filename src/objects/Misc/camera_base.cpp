@@ -22,17 +22,25 @@ void camera_base::setXY(int x, int y) {
 	rect.x = x;
 	rect.y = y;
 
-	int deltaX = rect.x - oldXY.x;
-	int deltaY = rect.y - oldXY.y;
+	deltaX = rect.x - oldXY.x;
+	deltaY = rect.y - oldXY.y;
 
 	updateSprites(-1 * deltaX, -1 * deltaY);
+	deltaX = 0;
+	deltaY = 0;
 }
 
-void camera_base::move(int deltaX, int deltaY) {
-	last_deltaX = deltaX;
-	last_deltaY = deltaY;
-	rect.x += deltaX;
-	rect.y += deltaY;
+void camera_base::move(int delta_X, int delta_Y) {
+	last_deltaX = delta_X;
+	last_deltaY = delta_Y;
+	rect.x += delta_X;
+	rect.y += delta_Y;
 
-	updateSprites(-deltaX, -deltaY);
+	updateSprites(-delta_X, -delta_Y);
+}
+
+void camera_base::update() {
+	move(deltaX, deltaY);
+	deltaX = 0;
+	deltaY = 0;
 }

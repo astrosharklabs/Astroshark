@@ -12,14 +12,18 @@ public:
 	ship_base ship;
 	void initialize();
 	void queueRequest(int type);
-	void render(SDL_Renderer *);
+	void render(SDL_Renderer *renderer);
+
+	void updateState();
 
 	void update();
 private:
 	animation defaultCycle;
-	animation transitCycle;
+	animation accelCycle;
+	animation rotateCycle[4];
 	animation moveCycle[4];
 	animation currentSRCRECT;
+	int state;
 };
 
 #endif

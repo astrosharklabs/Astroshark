@@ -56,7 +56,7 @@ void arcadeMode(SDL_Renderer *renderer) {
 
 			amadeus.update();
 
-			mainCamera.move(amadeus.ship.movement.deltaX / 2, amadeus.ship.movement.deltaY / 2);
+			mainCamera.update();
 			//printf("hhh%d, %d, %d, %d\n", mainCamera.rect.x, mainCamera.rect.y, mainCamera.rect.w, mainCamera.rect.h);
 
 			SDL_RenderClear(renderer);

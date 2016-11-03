@@ -12,5 +12,8 @@ public:
 	int last_deltaY;
 	void setXY(int, int);
 	void move(int, int);
+	void update();
+	int deltaX;
+	int deltaY;
 };
 #endif // !camera_h

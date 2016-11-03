@@ -3,9 +3,14 @@
 #include "../../engine/sprite.h"
 #include "../../engine/textures.h"
 #include "../../engine/domain_base.h"
+#include "../../engine/timer.h"
 
 #ifndef ship_base_h
 #define ship_base_h
+
+namespace ship_base_ {
+	enum rotateDirect { NONE, LEFT, RIGHT };
+}
 
 class ship_base {
 public:
@@ -32,9 +37,13 @@ public:
 	void queueRotateRight();
 
 	void getXY();
+	int getH();
 	bool isCollide();
 	int lives;
 	basicMovement movement;
+	timer keyDown_timer;
+	timer keyDownRotate_timer;
+	int rotateDirection;
 private:
 	defaultProp prop;
 	collision collision;
