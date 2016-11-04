@@ -36,6 +36,9 @@ void amadeusShip::initialize() {
 
 	//setRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, &ship.movement.domain);
 	ship.movement.origin.y = ship.getH() / 2 + 10;
+
+	laser_01.initialize();
+	laser_01.laser.setOrigin(laser_01.laser.getW() / 2, ship.movement.origin.y);
 }
 
 void amadeusShip::queueRequest(int type) {
@@ -59,7 +62,7 @@ void amadeusShip::queueRequest(int type) {
 		ship.queueRotateRight();
 		break;
 	case SHOOT:
-		
+		laser_01.laser.fire(ship.getAngle() + ship.movement.deltaAngle, ship.movement.Gdstrect);
 		break;
 	default:
 		break;
@@ -67,6 +70,7 @@ void amadeusShip::queueRequest(int type) {
 }
 
 void amadeusShip::render(SDL_Renderer *renderer) {
+	laser_01.render(renderer);
 	ship.render(renderer, &currentSRCRECT.srcrect);
 }
 
@@ -126,4 +130,6 @@ void amadeusShip::update() {
 	}
 
 	updateState();
+
+	laser_01.update();
 }

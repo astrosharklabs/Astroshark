@@ -2,6 +2,7 @@
 #include "ship_base.h"
 #include "../../engine/sprite.h"
 #include "SDL.h"
+#include "laser_classes.h"
 
 #ifndef ship_classes_h
 #define ship_classes_h
@@ -17,6 +18,8 @@ public:
 	void updateState();
 
 	void update();
+
+	standardLaser laser_01;
 private:
 	animation defaultCycle;
 	animation accelCycle;

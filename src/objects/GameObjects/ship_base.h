@@ -36,6 +36,7 @@ public:
 	void queueRotateRight();
 
 	void getXY();
+	int getAngle();
 	int getH();
 	bool isCollide();
 	int lives;

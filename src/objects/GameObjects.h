@@ -6,7 +6,6 @@
 #define GameObjects_h
 
 extern amadeusShip amadeus;
-extern standardLaser laser_01;
 
 void GameObjectsLoad_ArcadeMode();
 void GameObjectsRender_ArcadeMode(SDL_Renderer *);

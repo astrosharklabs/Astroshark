@@ -23,6 +23,8 @@ public:
 	void rotate(int deltaAngle);
 
 	void fire(int angle, SDL_Rect dstrect);
+
+	int getW();
 	basicMovement movement;
 	collision collision;
 private:

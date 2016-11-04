@@ -167,6 +167,10 @@ void ship_base::queueRotateRight() {
 	rotateDirection = ship_base_::RIGHT;
 }
 
+int ship_base::getAngle() {
+	return prop.angle;
+}
+
 int ship_base::getH() {
 	return prop.dstrect.h;
 }

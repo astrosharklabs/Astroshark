@@ -85,9 +85,6 @@ void laser_base::move(int *deltaX, int *deltaY) {
 
 		prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x - *deltaX;
 		prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y - *deltaY;
-
-		mainCamera.deltaX = movement.deltaX / 2;
-		mainCamera.deltaY = movement.deltaY / 2;
 	}
 }
 
@@ -102,8 +99,12 @@ void laser_base::rotate(int deltaAngle) {
 
 
 void laser_base::fire(int angle, SDL_Rect dstrect) {
-	setXY(dstrect.w / 2 - prop.dstrect.w / 2, dstrect.y + 5);
+	setXY((dstrect.x + (dstrect.w / 2)) - (prop.dstrect.w / 2), dstrect.y);
 	prop.angle = angle;
 
 	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle, movement.movementSpeed);
+}
+
+int laser_base::getW() {
+	return prop.dstrect.w;
 }
