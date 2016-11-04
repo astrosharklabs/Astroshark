@@ -16,4 +16,6 @@ extern SDL_Texture *buttons_texture;
 extern SDL_Texture *background_texture;
 
 extern SDL_Texture *amadeusShip_texture;
+
+extern SDL_Texture *laserSpritesheet_texture;
 #endif

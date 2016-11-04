@@ -6,11 +6,13 @@
 #include "../../engine/sprite.h"
 #include <stdio.h>
 #include <iostream>
+#include "../../engine/textures.h"
 
 enum status {STOPPED, ACCEL, ROTATE_L, ROTATE_R, MOVING};
 
 void amadeusShip::initialize() {
 	ship.setup(0, 0, 32, 48, amadeusShip_texture);
+
 	ship.defFrame(0, 0, 320, 480, &defaultCycle.srcrect);
 	ship.defFrame(320, 0, 320, 480, &rotateCycle[0].srcrect);
 	ship.defFrame(640, 0, 320, 480, &rotateCycle[1].srcrect);
@@ -27,11 +29,12 @@ void amadeusShip::initialize() {
 	ship.center();
 
 	ship.rotate(90);
+
 	copyRect(defaultCycle.srcrect, &currentSRCRECT.srcrect);
 
 	state = STOPPED;
 
-	setRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, &ship.movement.domain);
+	//setRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, &ship.movement.domain);
 	ship.movement.origin.y = ship.getH() / 2 + 10;
 }
 
@@ -56,6 +59,7 @@ void amadeusShip::queueRequest(int type) {
 		ship.queueRotateRight();
 		break;
 	case SHOOT:
+		
 		break;
 	default:
 		break;

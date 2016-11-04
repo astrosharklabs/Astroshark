@@ -14,8 +14,9 @@ public:
 	void restrictOut(SDL_Rect *rect);
 	void restrictTeleportIn(SDL_Rect *rect);
 	void restrictTeleportOut(SDL_Rect *rect);
+	void restrictBounceIn(SDL_Rect rect);
+	void restrictBounceOut(SDL_Rect rect);
 	int restrictMode;
-private:
 	SDL_Rect dstrect;
 };
 #endif

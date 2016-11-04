@@ -25,7 +25,7 @@ void domain_base::restrictIn(SDL_Rect rect, int *deltaX, int *deltaY) {
 	if (rect.x + rect.w + *deltaX > dstrect.x + dstrect.w) {
 		*deltaX = 0;
 	}
-	if (rect.y + *deltaY < dstrect.y) {
+	if (rect.y + *deltaY < dstrect.y - 20) {
 		*deltaY = 0;
 	}
 	if (rect.y + rect.h + *deltaY > dstrect.y + dstrect.h) {

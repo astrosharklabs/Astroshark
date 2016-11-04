@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL.h>
 #include "../../engine/sprite.h"
-#include "../../engine/textures.h"
 #include "../../engine/domain_base.h"
 #include "../../engine/timer.h"
 
@@ -27,7 +26,7 @@ public:
 
 	void setSpeed(int speed);
 	void move(int *deltaX, int *deltaY);
-	void rotate(int angle);
+	void rotate(int deltaAngle);
 
 	void queueMoveForward();
 	void queueMoveBackward();
@@ -43,10 +42,10 @@ public:
 	basicMovement movement;
 	timer keyDown_timer;
 	timer keyDownRotate_timer;
+	collision collision;
 	int rotateDirection;
 private:
 	defaultProp prop;
-	collision collision;
 	domain_base arcadeMode_domain;
 	bool collide;
 	bool invincible;

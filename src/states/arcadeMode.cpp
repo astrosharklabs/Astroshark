@@ -53,6 +53,9 @@ void arcadeMode(SDL_Renderer *renderer) {
 			if (input::right_key == true) {
 				amadeus.queueRequest(ROTATE_RIGHT);
 			}
+			if (input::space_key == true) {
+				amadeus.queueRequest(SHOOT);
+			}
 
 			amadeus.update();
 

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <SDL.h>
 #include "ship_base.h"
-#include "../../engine/textures.h"
 #include "../../engine/sprite.h"
 #include "../../engine/input.h"
 #include "../../engine/constants.h"
@@ -56,7 +55,7 @@ void ship_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
 
 void ship_base::setXY(int dstX, int dstY) {
 	movement.Gdstrect.x = dstX;
-	movement.Gdstrect.y = dstY;;
+	movement.Gdstrect.y = dstY;
 
 	prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x;
 	prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y;
