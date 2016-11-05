@@ -3,6 +3,7 @@
 #include "../../engine/sprite.h"
 #include "SDL.h"
 #include "laser_classes.h"
+#include "../../engine/timer.h"
 
 #ifndef ship_classes_h
 #define ship_classes_h
@@ -19,14 +20,19 @@ public:
 
 	void update();
 
-	standardLaser laser_01;
+	standardLaser laser_01[10];
+
+	timer fireRate_timer;
 private:
 	animation defaultCycle;
 	animation accelCycle;
 	animation rotateCycle[4];
 	animation moveCycle[4];
 	animation currentSRCRECT;
+	float fireRate;
+	int nextLaser;
 	int state;
+	int i;
 };
 
 #endif
