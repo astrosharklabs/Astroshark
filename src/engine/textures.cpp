@@ -1,5 +1,6 @@
 #include "SDL.h"
 #include "SDL_image.h"
+#include "textures.h"
 
 void loadTexturefromIMG(SDL_Renderer *renderer, SDL_Texture **texture, char *file) {
 	SDL_Surface *tempSurface;
@@ -14,3 +15,4 @@ SDL_Texture *buttons_texture = NULL;
 SDL_Texture *background_texture = NULL;
 SDL_Texture *amadeusShip_texture = NULL;
 SDL_Texture *laserSpritesheet_texture = NULL;
+SDL_Texture *asteroidSpritesheet_texture = NULL;

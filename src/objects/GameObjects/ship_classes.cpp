@@ -75,6 +75,8 @@ void amadeusShip::queueRequest(int type) {
 			nextLaser++;
 
 			fireRate_timer.start();
+			//printf("fire\n");
+			//std::cout << ship.getAngle() + ship.movement.deltaAngle << ship.movement.Gdstrect.x << ship.movement.Gdstrect.y << std::endl;
 		}
 		break;
 	default:
@@ -87,6 +89,8 @@ void amadeusShip::render(SDL_Renderer *renderer) {
 		laser_01[i].render(renderer);
 	}
 	ship.render(renderer, &currentSRCRECT.srcrect);
+
+	std::cout << mainCamera.rect.x << ", " << mainCamera.rect.y << std::endl;
 }
 
 void amadeusShip::updateState() {

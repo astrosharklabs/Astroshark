@@ -28,7 +28,7 @@ void ship_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *textu
 	collision.hitbox.h = dstH;
 
 	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
-	arcadeMode_domain.setup(0, 0, mainCamera.rect.w, mainCamera.rect.h, 0);
+	arcadeMode_domain.setup(-350, -200, mainCamera.rect.w + 700, mainCamera.rect.h + 400, 0);
 	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
 
 	keyDown_timer.setup();
@@ -44,6 +44,11 @@ void ship_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *textu
 	movement.movementSpeed = 10;
 	movement.rotateSpeed = 5;
 	rotateDirection = ship_base_::NONE;
+
+	movement.deltaAngle = 0;
+	movement.deltaX = 0;
+	movement.deltaY = 0;
+	prop.angle = 0;
 }
 
 void ship_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
@@ -104,15 +109,21 @@ void ship_base::setCollision(int x, int y, int w, int h) {
 
 void ship_base::move(int *deltaX, int *deltaY) {
 	if (STATE == START_GAME) {
-		arcadeMode_domain.restrictIn(prop.dstrect, deltaX, deltaY);
+
+		mainCamera.deltaX = *deltaX / 2;
+		mainCamera.deltaY = *deltaY / 2;
+
+		arcadeMode_domain.dstrect.y -= 20;
+		arcadeMode_domain.dstrect.h += 20;
+		arcadeMode_domain.restrictIn(movement.Gdstrect, deltaX, deltaY);
+		arcadeMode_domain.dstrect.y += 20;
+		arcadeMode_domain.dstrect.h -= 20;
+
 		movement.Gdstrect.x += *deltaX;
 		movement.Gdstrect.y += *deltaY;
 
 		prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x - *deltaX;
 		prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y - *deltaY;
-
-		mainCamera.deltaX = movement.deltaX / 2;
-		mainCamera.deltaY = movement.deltaY / 2;
 	}
 
 	/*prop.dstrect.x += deltaX;

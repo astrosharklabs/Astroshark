@@ -56,6 +56,7 @@ void loadTextures() {
 	loadTexturefromIMG(renderer, &background_texture, "resources/gfx/background_1920x1920.png");
 	loadTexturefromIMG(renderer, &amadeusShip_texture, "resources/gfx/sprites/playerShip_spritesheet_320x480.png");
 	loadTexturefromIMG(renderer, &laserSpritesheet_texture, "resources/gfx/sprites/lasers_spritesheet_160x320.png");
+	loadTexturefromIMG(renderer, &asteroidSpritesheet_texture, "resources/gfx/sprites/asteroid_spritesheet_640x640.png");
 }
 
 void close() {

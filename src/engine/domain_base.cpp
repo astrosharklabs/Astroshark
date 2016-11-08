@@ -20,16 +20,16 @@ void domain_base::move(int x, int y) {
 void domain_base::restrictIn(SDL_Rect rect, int *deltaX, int *deltaY) {
 	//printf("%d, %d, %d, %d\n", dstrect.x, dstrect.y, dstrect.w, dstrect.h);
 	if (rect.x + *deltaX < dstrect.x) {
-		*deltaX = 0;
+		*deltaX = dstrect.x - rect.x;
 	}
 	if (rect.x + rect.w + *deltaX > dstrect.x + dstrect.w) {
-		*deltaX = 0;
+		*deltaX = (dstrect.x + dstrect.w) - (rect.x + rect.w);
 	}
-	if (rect.y + *deltaY < dstrect.y - 20) {
-		*deltaY = 0;
+	if (rect.y + *deltaY < dstrect.y) {
+		*deltaY = dstrect.y - rect.y;
 	}
 	if (rect.y + rect.h + *deltaY > dstrect.y + dstrect.h) {
-		*deltaY = 0;
+		*deltaY = (dstrect.y + dstrect.h) - (rect.y + rect.h);
 	}
 }
 

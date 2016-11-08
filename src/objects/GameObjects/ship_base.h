@@ -44,10 +44,10 @@ public:
 	timer keyDown_timer;
 	timer keyDownRotate_timer;
 	collision collision;
+	domain_base arcadeMode_domain;
 	int rotateDirection;
 private:
 	defaultProp prop;
-	domain_base arcadeMode_domain;
 	bool collide;
 	bool invincible;
 };

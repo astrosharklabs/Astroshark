@@ -21,7 +21,8 @@ void standardLaser::initialize() {
 }
 
 void standardLaser::render(SDL_Renderer *renderer) {
-	laser.render(renderer, &currentSRCRECT.srcrect);
+	if (state != STOPPED)
+		laser.render(renderer, &currentSRCRECT.srcrect);
 }
 
 void standardLaser::updateStates() {
@@ -39,7 +40,8 @@ void standardLaser::updateStates() {
 void standardLaser::update() {
 	laser.move(&laser.movement.deltaX, &laser.movement.deltaY);
 
-	state = MOVING;
+	if (laser.movement.deltaX != 0 || laser.movement.deltaY != 0)
+		state = MOVING;
 
 	updateStates();
 }

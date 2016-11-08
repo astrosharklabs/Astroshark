@@ -9,6 +9,7 @@
 void arcadeMode(SDL_Renderer *renderer) {
 	mainCamera.timer.start();
 	FPS_timer.start();
+	mainCamera.setXY(0, 0);
 	amadeus.ship.center();
 	//mainCamera.setXY(0, 0);
 	//printf("%d, %d\n", mainCamera.rect.w, mainCamera.rect.h);
@@ -59,6 +60,7 @@ void arcadeMode(SDL_Renderer *renderer) {
 
 			amadeus.update();
 
+			amadeus.ship.arcadeMode_domain.restrictIn(mainCamera.rect, &mainCamera.deltaX, &mainCamera.deltaY);
 			mainCamera.update();
 			//printf("hhh%d, %d, %d, %d\n", mainCamera.rect.x, mainCamera.rect.y, mainCamera.rect.w, mainCamera.rect.h);
 

@@ -18,4 +18,6 @@ extern SDL_Texture *background_texture;
 extern SDL_Texture *amadeusShip_texture;
 
 extern SDL_Texture *laserSpritesheet_texture;
+
+extern SDL_Texture *asteroidSpritesheet_texture;
 #endif
