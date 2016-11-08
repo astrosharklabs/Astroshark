@@ -95,14 +95,6 @@ void asteroid_base::rotate(int deltaAngle) {
 		prop.angle -= 360;
 }
 
-
-void asteroid_base::fire(int angle, SDL_Rect dstrect) {
-	setXY((dstrect.x + (dstrect.w / 2)) - (prop.dstrect.w / 2), dstrect.y);
-	prop.angle = angle;
-
-	rotationalMovement(&movement.deltaX, &movement.deltaY, prop.angle, movement.movementSpeed);
-}
-
 int asteroid_base::getW() {
 	return prop.dstrect.w;
 }

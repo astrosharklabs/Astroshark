@@ -90,7 +90,7 @@ void amadeusShip::render(SDL_Renderer *renderer) {
 	}
 	ship.render(renderer, &currentSRCRECT.srcrect);
 
-	std::cout << mainCamera.rect.x << ", " << mainCamera.rect.y << std::endl;
+	//std::cout << mainCamera.rect.x << ", " << mainCamera.rect.y << std::endl;
 }
 
 void amadeusShip::updateState() {
