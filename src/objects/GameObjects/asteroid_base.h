@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "../../engine/sprite.h"
+#include "../../engine/timer.h"
 
 #ifndef asteroid_base_h
 #define asteroid_base_h
@@ -24,6 +25,8 @@ public:
 	int getW();
 	basicMovement movement;
 	collision collision;
+	timer rotateTimer;
+	int rotateRate;
 private:
 	defaultProp prop;
 };

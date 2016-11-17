@@ -58,10 +58,8 @@ void arcadeMode(SDL_Renderer *renderer) {
 				amadeus.queueRequest(SHOOT);
 			}
 
-			amadeus.update();
 
-			amadeus.ship.arcadeMode_domain.restrictIn(mainCamera.rect, &mainCamera.deltaX, &mainCamera.deltaY);
-			mainCamera.update();
+			GameObjectsUpdate_ArcadeMode();
 			//printf("hhh%d, %d, %d, %d\n", mainCamera.rect.x, mainCamera.rect.y, mainCamera.rect.w, mainCamera.rect.h);
 
 			SDL_RenderClear(renderer);

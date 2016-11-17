@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "../../engine/sprite.h"
 #include "../../engine/constants.h"
+#include <iostream>
 
 void asteroid_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *texture) {
 	prop.texture = texture;
@@ -30,6 +31,12 @@ void asteroid_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *t
 	movement.origin.y = prop.dstrect.h / 2;
 	movement.movementSpeed = 20;
 	movement.rotateSpeed = 5;
+
+	movement.deltaX = 0;
+	movement.deltaY = 0;
+	movement.deltaAngle = 0; //change to deltaA
+
+	rotateTimer.setup();
 }
 
 void asteroid_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
@@ -43,6 +50,7 @@ void asteroid_base::setXY(int dstX, int dstY) {
 
 	prop.dstrect.x = movement.Gdstrect.x - mainCamera.rect.x;
 	prop.dstrect.y = movement.Gdstrect.y - mainCamera.rect.y;
+	//std::cout << prop.dstrect.x << " " << prop.dstrect.y << std::endl;
 }
 
 void asteroid_base::setOrigin(int dstX, int dstY) {
