@@ -86,6 +86,7 @@ void asteroid_base::setSpeed(int speed) {
 
 void asteroid_base::move(int *deltaX, int *deltaY) {
 	if (STATE == START_GAME) {
+
 		movement.Gdstrect.x += *deltaX;
 		movement.Gdstrect.y += *deltaY;
 

@@ -32,8 +32,8 @@ void standardAsteroid::initialize(int asteroidSize) {
 
 	//std::cout << base.movement.Gdstrect.x << " " << base.movement.Gdstrect.y << std::endl;
 
-	base.movement.deltaX = 0;
-	base.movement.deltaY = 0;
+	base.movement.deltaX = (rand() % 10) + 1;
+	base.movement.deltaY = (rand() % 10) + 1;
 
 	while (base.movement.deltaAngle == 0) {
 		base.movement.deltaAngle = rand() % 3 - 1;

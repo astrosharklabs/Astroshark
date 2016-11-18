@@ -6,9 +6,13 @@
 
 amadeusShip amadeus;
 
-standardAsteroid smallAsteroid[24];
-standardAsteroid mediumAsteroid[8];
-standardAsteroid largeAsteroid[2];
+standardAsteroid asteroid_small[24];
+standardAsteroid asteroid_medium[8];
+standardAsteroid asteroid_large[2];
+
+int asteroid_smallTotal;
+int asteroid_mediumTotal;
+int asteroid_largeTotal;
 
 int i;
 
@@ -17,12 +21,16 @@ void GameObjectsLoad_ArcadeMode() {
 
 	asteroid_classes_::arcadeMode_domain.setup(amadeus.ship.arcadeMode_domain.dstrect.x - 400, amadeus.ship.arcadeMode_domain.dstrect.y - 400, amadeus.ship.arcadeMode_domain.dstrect.w + 800, amadeus.ship.arcadeMode_domain.dstrect.h + 800, 0);
 
-	for (i = 0; i < 24; i++)
-		smallAsteroid[i].initialize(asteroid_classes_::SMALL);
-	for (i = 0; i < 8; i++)
-		mediumAsteroid[i].initialize(asteroid_classes_::MEDIUM);
-	for (i = 0; i < 2; i++)
-		largeAsteroid[i].initialize(asteroid_classes_::LARGE);
+	asteroid_smallTotal = sizeof(asteroid_small) / sizeof(asteroid_small[0]);
+	asteroid_mediumTotal = sizeof(asteroid_medium) / sizeof(asteroid_medium[0]);
+	asteroid_largeTotal = sizeof(asteroid_large) / sizeof(asteroid_large[0]);
+
+	for (i = 0; i < asteroid_smallTotal; i++)
+		asteroid_small[i].initialize(asteroid_classes_::SMALL);
+	for (i = 0; i < asteroid_mediumTotal; i++)
+		asteroid_medium[i].initialize(asteroid_classes_::MEDIUM);
+	for (i = 0; i < asteroid_largeTotal; i++)
+		asteroid_large[i].initialize(asteroid_classes_::LARGE);
 }
 
 void GameObjectsUpdate_ArcadeMode() {
@@ -31,21 +39,29 @@ void GameObjectsUpdate_ArcadeMode() {
 	amadeus.ship.arcadeMode_domain.restrictIn(mainCamera.rect, &mainCamera.deltaX, &mainCamera.deltaY);
 	mainCamera.update();
 
-	for (i = 0; i < 24; i++)
-		smallAsteroid[i].update();
-	for (i = 0; i < 8; i++)
-		mediumAsteroid[i].update();
-	for (i = 0; i < 2; i++)
-		largeAsteroid[i].update();
+	for (i = 0; i < asteroid_smallTotal; i++) {
+		asteroid_small[i].update();
+		asteroid_classes_::arcadeMode_domain.restrictTeleportIn(&asteroid_small[i].base.movement.Gdstrect);
+	}
+	for (i = 0; i < asteroid_mediumTotal; i++) {
+		asteroid_medium[i].update();
+		asteroid_classes_::arcadeMode_domain.restrictTeleportIn(&asteroid_medium[i].base.movement.Gdstrect);
+	}
+	for (i = 0; i < asteroid_largeTotal; i++) {
+		asteroid_large[i].update();
+		asteroid_classes_::arcadeMode_domain.restrictTeleportIn(&asteroid_large[i].base.movement.Gdstrect);
+	}
+
+	//Check for collisions
 }
 
 void GameObjectsRender_ArcadeMode(SDL_Renderer *renderer) {
 	amadeus.render(renderer);
 
-	for (i = 0; i < 24; i++)
-		smallAsteroid[i].render(renderer);
-	for (i = 0; i < 8; i++)
-		mediumAsteroid[i].render(renderer);
-	for (i = 0; i < 2; i++)
-		largeAsteroid[i].render(renderer);
+	for (i = 0; i < asteroid_smallTotal; i++)
+		asteroid_small[i].render(renderer);
+	for (i = 0; i < asteroid_mediumTotal; i++)
+		asteroid_medium[i].render(renderer);
+	for (i = 0; i < asteroid_largeTotal; i++)
+		asteroid_large[i].render(renderer);
 }

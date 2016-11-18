@@ -37,7 +37,27 @@ void domain_base::restrictOut(SDL_Rect *rect) {
 }
 
 void domain_base::restrictTeleportIn(SDL_Rect *rect) {
+	if (rect->x + rect->w < dstrect.x) {
+		rect->x = dstrect.x + dstrect.w;
+	}
+	if (rect->x > dstrect.x + dstrect.w) {
+		rect->x = dstrect.x;
+	}
+	if (rect->y + rect->h < dstrect.y) {
+		rect->y = dstrect.y + dstrect.h;
+	}
+	if (rect->y > dstrect.y + dstrect.h) {
+		rect->y = dstrect.y;
+	}
 }
 
 void domain_base::restrictTeleportOut(SDL_Rect *rect) {
+}
+
+void domain_base::restrictBounceIn(SDL_Rect rect) {
+
+}
+
+void domain_base::restrictBounceOut(SDL_Rect rect) {
+
 }
