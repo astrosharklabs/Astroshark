@@ -18,11 +18,15 @@ void standardLaser::initialize() {
 	copyRect(moveCycle[0].srcrect, &currentSRCRECT.srcrect);
 
 	state = STOPPED;
+
+	isActive = true;
+	isAvailable = false;
 }
 
 void standardLaser::render(SDL_Renderer *renderer) {
-	if (state != STOPPED)
-		laser.render(renderer, &currentSRCRECT.srcrect);
+	if (state != STOPPED) {
+		isAvailable = !(laser.render(renderer, &currentSRCRECT.srcrect));
+	}
 }
 
 void standardLaser::updateStates() {
@@ -44,4 +48,12 @@ void standardLaser::update() {
 		state = MOVING;
 
 	updateStates();
+}
+
+void standardLaser::activate() {
+	isActive = true;
+}
+
+void standardLaser::deactivate() {
+	isActive = false;
 }

@@ -15,6 +15,7 @@ int asteroid_mediumTotal;
 int asteroid_largeTotal;
 
 int i;
+int j;
 
 void GameObjectsLoad_ArcadeMode() {
 	amadeus.initialize();
@@ -42,17 +43,48 @@ void GameObjectsUpdate_ArcadeMode() {
 	for (i = 0; i < asteroid_smallTotal; i++) {
 		asteroid_small[i].update();
 		asteroid_classes_::arcadeMode_domain.restrictTeleportIn(&asteroid_small[i].base.movement.Gdstrect);
+
+		for (j = 0; j < amadeus.laser_01Total; j++) {
+			if (amadeus.laser_01[j].isActive == true) {
+				if (amadeus.laser_01[j].laser.inView == true) {
+					if (asteroid_small[i].checkCollision(amadeus.laser_01[j].laser.movement.Gdstrect) == true) {
+						asteroid_small[i].deactivate();
+					}
+				}
+			}
+		}
 	}
 	for (i = 0; i < asteroid_mediumTotal; i++) {
 		asteroid_medium[i].update();
 		asteroid_classes_::arcadeMode_domain.restrictTeleportIn(&asteroid_medium[i].base.movement.Gdstrect);
+
+		for (j = 0; j < amadeus.laser_01Total; j++) {
+			if (amadeus.laser_01[j].isActive == true) {
+				if (amadeus.laser_01[j].laser.inView == true) {
+					if (asteroid_medium[i].checkCollision(amadeus.laser_01[j].laser.movement.Gdstrect) == true) {
+						asteroid_medium[i].deactivate();
+					}
+				}
+			}
+		}
 	}
 	for (i = 0; i < asteroid_largeTotal; i++) {
 		asteroid_large[i].update();
 		asteroid_classes_::arcadeMode_domain.restrictTeleportIn(&asteroid_large[i].base.movement.Gdstrect);
+
+		for (j = 0; j < amadeus.laser_01Total; j++) {
+			if (amadeus.laser_01[j].isActive == true) {
+				if (amadeus.laser_01[j].laser.inView == true) {
+					if (asteroid_large[i].checkCollision(amadeus.laser_01[j].laser.movement.Gdstrect) == true) {
+						asteroid_large[i].deactivate();
+					}
+				}
+			}
+		}
 	}
 
 	//Check for collisions
+
 }
 
 void GameObjectsRender_ArcadeMode(SDL_Renderer *renderer) {

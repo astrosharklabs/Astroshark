@@ -7,9 +7,9 @@
 #define GameObjects_h
 
 extern amadeusShip amadeus;
-extern standardAsteroid asteroid_small[24];
-extern standardAsteroid asteroid_medium[8];
-extern standardAsteroid asteroid_large[2];
+extern standardAsteroid asteroid_small[];
+extern standardAsteroid asteroid_medium[];
+extern standardAsteroid asteroid_large[];
 
 void GameObjectsLoad_ArcadeMode();
 void GameObjectsUpdate_ArcadeMode();

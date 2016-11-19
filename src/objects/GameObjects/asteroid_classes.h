@@ -19,7 +19,13 @@ public:
 	void render(SDL_Renderer *renderer);
 
 	void update();
+	bool checkCollision(SDL_Rect rect);
 
+	void activate();
+	void deactivate();
+
+	bool isActive;
+	bool isAvailable;
 	int size;
 private:
 	animation currentSRCRECT;

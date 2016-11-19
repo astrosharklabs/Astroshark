@@ -9,7 +9,7 @@
 class asteroid_base {
 public:
 	void setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *texture);
-	void render(SDL_Renderer *renderer, SDL_Rect *srcrect);
+	bool render(SDL_Renderer *renderer, SDL_Rect *srcrect);
 	void setXY(int dstX, int dstY);
 	void setOrigin(int dstX, int dstY);
 	void alphaInc(int rate);
@@ -27,6 +27,7 @@ public:
 	collision collision;
 	timer rotateTimer;
 	int rotateRate;
+	bool inView;
 private:
 	defaultProp prop;
 };

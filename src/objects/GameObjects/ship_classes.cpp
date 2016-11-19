@@ -47,6 +47,8 @@ void amadeusShip::initialize() {
 	fireRate_timer.setup();
 	fireRate_timer.start();
 	fireRate = 1.0 / 4.0;
+
+	laser_01Total = sizeof(laser_01) / sizeof(laser_01[1]);
 }
 
 void amadeusShip::queueRequest(int type) {

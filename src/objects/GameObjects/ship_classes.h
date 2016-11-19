@@ -21,6 +21,7 @@ public:
 	void update();
 
 	standardLaser laser_01[10];
+	int laser_01Total;
 
 	timer fireRate_timer;
 private:

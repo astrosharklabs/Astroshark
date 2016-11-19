@@ -9,7 +9,7 @@
 class laser_base {
 public:
 	void setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *texture);
-	void render(SDL_Renderer *renderer, SDL_Rect *srcrect);
+	bool render(SDL_Renderer *renderer, SDL_Rect *srcrect);
 	void setXY(int dstX, int dstY);
 	void setOrigin(int dstX, int dstY);
 	void alphaInc(int rate);
@@ -27,6 +27,7 @@ public:
 	int getW();
 	basicMovement movement;
 	collision collision;
+	bool inView;
 private:
 	defaultProp prop;
 	domain_base arcadeMode_domain;

@@ -6,7 +6,7 @@
 #include "../../engine/domain_base.h"
 #include <iostream>
 
-enum status{ STOPPED, MOVING, COLLISION };
+enum status{ DEAD, MOVING, COLLISION };
 
 domain_base asteroid_classes_::arcadeMode_domain;
 
@@ -49,14 +49,18 @@ void standardAsteroid::initialize(int asteroidSize) {
 	if (size == asteroid_classes_::LARGE)
 		base.rotateRate = (rand() % 29) + 1;
 
-	state = STOPPED;
+	state = DEAD;
 
 	base.rotateTimer.start();
+
+	isActive = true;
+	isAvailable = true;
 }
 
 void standardAsteroid::render(SDL_Renderer *renderer) {
-	//if (state != STOPPED)
-		base.render(renderer, &currentSRCRECT.srcrect);
+	if (isActive == true) {
+		isAvailable = !(base.render(renderer, &currentSRCRECT.srcrect) == true);
+	}
 }
 
 void standardAsteroid::update() {
@@ -67,4 +71,22 @@ void standardAsteroid::update() {
 		base.rotate(base.movement.deltaAngle);
 		base.rotateTimer.start();
 	}
+}
+
+bool standardAsteroid::checkCollision(SDL_Rect rect) {
+	if (isActive == true) {
+		return testCollision(rect, base.movement.Gdstrect);
+	}
+	else {
+		return false;
+	}
+}
+
+void standardAsteroid::activate() {
+	isActive = true;
+}
+
+void standardAsteroid::deactivate() {
+	std::cout << "Hit!\n";
+	isActive = false;
 }

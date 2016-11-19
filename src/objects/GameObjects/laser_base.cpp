@@ -32,11 +32,20 @@ void laser_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *text
 	movement.origin.y = prop.dstrect.h / 2;
 	movement.movementSpeed = 20;
 	movement.rotateSpeed = 5;
+
+	inView = false;
 }
 
-void laser_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
-	if (testCollision(movement.Gdstrect, mainCamera.rect) == true)
+bool laser_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
+	if (testCollision(movement.Gdstrect, mainCamera.rect) == true) {
 		SDL_RenderCopyEx(renderer, prop.texture, srcrect, &prop.dstrect, -1 * prop.angle + 90, &movement.origin, SDL_FLIP_NONE);
+		inView = true;
+		return true;
+	}
+	else {
+		inView = false;
+		return false;
+	}
 }
 
 void laser_base::setXY(int dstX, int dstY) {

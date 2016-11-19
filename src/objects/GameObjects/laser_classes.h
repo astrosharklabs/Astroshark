@@ -15,6 +15,12 @@ public:
 	void updateStates();
 
 	void update();
+
+	void activate();
+	void deactivate();
+
+	bool isActive;
+	bool isAvailable;
 private:
 	animation moveCycle[3];
 	animation collisionCycle[3];

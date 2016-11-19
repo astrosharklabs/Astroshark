@@ -37,11 +37,20 @@ void asteroid_base::setup(int dstX, int dstY, int dstW, int dstH, SDL_Texture *t
 	movement.deltaAngle = 0; //change to deltaA
 
 	rotateTimer.setup();
+
+	inView = false;
 }
 
-void asteroid_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
-	if (testCollision(movement.Gdstrect, mainCamera.rect) == true)
+bool asteroid_base::render(SDL_Renderer *renderer, SDL_Rect *srcrect) {
+	if (testCollision(movement.Gdstrect, mainCamera.rect) == true) {
 		SDL_RenderCopyEx(renderer, prop.texture, srcrect, &prop.dstrect, -1 * prop.angle + 90, &movement.origin, SDL_FLIP_NONE);
+		inView = true;
+		return true;
+	}
+	else {
+		inView = false;
+		return false;
+	}
 }
 
 void asteroid_base::setXY(int dstX, int dstY) {
